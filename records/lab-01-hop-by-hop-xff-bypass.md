@@ -4,6 +4,8 @@ researcher: "Nathan Davison"
 year: 2019
 url: "https://nathandavison.com/blog/abusing-http-hop-by-hop-request-headers"
 topics: ["Hop-by-Hop Abuse"]
+techniques: ["Hop-by-Hop Abuse", "Access Control Bypass"]
+related: []
 type: "lab"
 status: "shipped"
 lab_url: "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/01-hop-by-hop-xff-bypass"

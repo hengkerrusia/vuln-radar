@@ -4,6 +4,8 @@ researcher: "HackerOne #1160407"
 year: 2021
 url: "https://hackerone.com/reports/1160407"
 topics: ["Cache Poisoning"]
+techniques: ["Cache Poisoning", "Access Control Bypass"]
+related: []
 type: "lab"
 status: "shipped"
 lab_url: "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/04-method-override"

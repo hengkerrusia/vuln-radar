@@ -4,6 +4,8 @@ researcher: "CCS 2019"
 year: 2019
 url: "https://cpdos.org/"
 topics: ["Cache Poisoning"]
+techniques: ["Cache Poisoning", "Denial of Service"]
+related: []
 type: "lab"
 status: "shipped"
 lab_url: "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/05-cpdos-error-caching"
