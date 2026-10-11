@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2025 — VulnRadar</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">VulnRadar</a>
+    <span class="tagline">Web hacking research signals — what is getting louder.</span>
+    <nav><a href="index.html">Signals</a><a href="archive.html">Archive</a></nav>
+  </div>
+</header>
+<main class="wrap">
+<h1>2025</h1><p class="lede">5 records.</p><article class="card">
+  <h3>Apache Traffic Server chunked smuggling<span class="badge lab">🧪 lab</span></h3>
+  <div class="meta">2025 — CVE-2025-65114</div>
+  <div class="topics"><span class="topic">Request Smuggling</span></div>
+  <p>Stale CR flag in ATS chunked parser lets smuggled requests slip through to the origin — HTTP request smuggling via parser differentials.</p>
+  <div class="links"><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-65114" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/07-ats-chunked-smuggling" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
+</article>
+<article class="card">
+  <h3>Cache Deception + CSPT to Account Takeover<span class="badge lab">🧪 lab</span></h3>
+  <div class="meta">2025 — zere.es</div>
+  <div class="topics"><span class="topic">CSPT</span></div>
+  <p>Chaining client-side path traversal with web cache deception — turning a non-impactful finding into account takeover. From a private bounty audit.</p>
+  <div class="links"><a href="https://zere.es/posts/cache-deception-cspt-account-takeover/" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/12-cspt-cache-deception" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
+</article>
+<article class="card">
+  <h3>HTTP/1.1 Must Die: The Desync Endgame<span class="badge lab">🧪 lab</span></h3>
+  <div class="meta">2025 — James Kettle</div>
+  <div class="topics"><span class="topic">Request Smuggling</span></div>
+  <p>0.CL desync via Expect: 100-continue — the desync endgame. Servers that assume Content-Length is always present can be desynced.</p>
+  <div class="links"><a href="https://portswigger.net/research/http1-must-die" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/10-0cl-expect-desync" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
+</article>
+<article class="card">
+  <h3>Pi-hole response splitting to session fixation<span class="badge lab">🧪 lab</span></h3>
+  <div class="meta">2025 — GHSA-5v79-p56f-x7c4 (CVE-2025-59151)</div>
+  <div class="topics"><span class="topic">CRLF Injection</span></div>
+  <p>CRLF injection in Pi-hole admin — response splitting injects Set-Cookie, leading to session fixation.</p>
+  <div class="links"><a href="https://github.com/advisories/GHSA-5v79-p56f-x7c4" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/15-crlf-response-splitting" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
+</article>
+<article class="card">
+  <h3>The Grafana Ghost<span class="badge lab">🧪 lab</span></h3>
+  <div class="meta">2025 — Alvaro Balada (CVE-2025-4123)</div>
+  <div class="topics"><span class="topic">CSPT</span></div>
+  <p>CSPT via Grafana plugin loader — open redirect to XSS to SSRF. CVE-2025-4123.</p>
+  <div class="links"><a href="https://grafana.com/security/security-advisories/cve-2025-4123/" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/14-cspt-plugin-xss-ssrf" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
+</article>
+</main>
+</body>
+</html>
