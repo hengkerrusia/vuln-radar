@@ -56,7 +56,7 @@
     }
     panel.innerHTML =
       '<button class="x" aria-label="close">×</button>' +
-      "<h3>Lab " + d.n + badge + "</h3>" +
+      "<h3>" + (d.badge === "lab" ? "Lab " + d.n : "Candidate") + badge + "</h3>" +
       "<p><b>" + esc(d.title) + "</b></p>" +
       '<div class="meta">' + d.year + (d.researcher ? " — " + esc(d.researcher) : "") + "</div>" +
       '<div class="topics">' + techs + "</div>" +
@@ -69,12 +69,13 @@
     var labs = BOARD_TECH[name] || [];
     var items = labs.map(function (slug) {
       var d = BOARD_DATA[slug];
-      return '<li><a href="#" data-goto="' + slug + '">Lab ' + d.n + " — " + esc(d.title) + "</a></li>";
+      var kind = d.badge === "lab" ? "Lab " + d.n : "Candidate";
+      return '<li><a href="#" data-goto="' + slug + '">' + kind + " — " + esc(d.title) + "</a></li>";
     }).join("");
     panel.innerHTML =
       '<button class="x" aria-label="close">×</button>' +
       "<h3>📌 " + esc(name) + "</h3>" +
-      "<p>" + labs.length + " lab" + (labs.length === 1 ? "" : "s") + " use this technique:</p>" +
+      "<p>" + labs.length + " record" + (labs.length === 1 ? "" : "s") + " use this technique:</p>" +
       "<ul>" + items + "</ul>";
     panel.hidden = false;
   }

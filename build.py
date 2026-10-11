@@ -280,8 +280,9 @@ def build_board(records):
         ("Labs 6\u201310 \u00b7 request smuggling / desync", [6, 7, 8, 9, 10]),
         ("Labs 11\u201314 \u00b7 CSPT", [11, 12, 13, 14]),
         ("Labs 15\u201318 \u00b7 CRLF", [15, 16, 17, 18]),
+        ("Lab 19 \u00b7 file inclusion / path traversal", [19]),
     ]
-    lab_pos, captions = {}, []
+    node_pos, captions = {}, []
     y = 300
     for caption, nums in series:
         captions.append((caption, y - 52))
@@ -289,13 +290,22 @@ def build_board(records):
         for i, num in enumerate(nums):
             x = PAD + 10 + i * ((W - 2 * PAD - 20) / (n - 1)) if n > 1 else W / 2
             slug = next(r["slug"] for r in records if lab_number(r["slug"]) == num)
-            lab_pos[slug] = (round(x, 1), y)
+            node_pos[slug] = (round(x, 1), y)
         y += 170
+    findings = [r for r in records if r["type"] == "finding"]
+    if findings:
+        captions.append(("Candidates \u00b7 not yet labs", y - 52))
+        n = len(findings)
+        for i, r in enumerate(findings):
+            x = PAD + 10 + i * ((W - 2 * PAD - 20) / (n - 1)) if n > 1 else W / 2
+            node_pos[r["slug"]] = (round(x, 1), y)
+        y += 170
+    board_h = y - 170 + 110
 
     parts = []
-    # lab -> technique strings (under nodes)
+    # record -> technique strings (under nodes)
     for r in records:
-        lx, ly = lab_pos[r["slug"]]
+        lx, ly = node_pos[r["slug"]]
         for t in r.get("techniques", []):
             tx, ty = tech_pos[t]
             cx, cy = round((lx + tx) / 2, 1), min(ly, ty) - 34
@@ -304,10 +314,10 @@ def build_board(records):
                 f'd="M {lx} {ly - 30} Q {cx} {cy} {tx} {ty + 18}">'
                 f'<title>{esc(r["title"])} \u2014 uses \u2014 {esc(t)}</title></path>'
             )
-    # lab -> lab links
+    # record -> record links
     for a, b, label in parse_related(records):
-        x1, y1 = lab_pos[a]
-        x2, y2 = lab_pos[b]
+        x1, y1 = node_pos[a]
+        x2, y2 = node_pos[b]
         if y1 == y2:
             cx, cy = (x1 + x2) / 2, y1 - 84
         else:
@@ -323,19 +333,22 @@ def build_board(records):
             f'<g class="technode" data-tech="{esc(t)}">'
             f'<circle class="pin" cx="{x}" cy="{y}" r="8"/>'
             f'<text class="techlabel" x="{x}" y="{y + 24}" text-anchor="middle">{esc(t)}</text>'
-            f'<text class="techcount" x="{x}" y="{y + 38}" text-anchor="middle">{tcounts[t]} labs</text>'
+            f'<text class="techcount" x="{x}" y="{y + 38}" text-anchor="middle">{tcounts[t]} uses</text>'
             f'</g>'
         )
-    # lab nodes
+    # record nodes
     for r in records:
-        x, y = lab_pos[r["slug"]]
+        x, y = node_pos[r["slug"]]
         num = lab_number(r["slug"])
         short = r["title"] if len(r["title"]) <= 26 else r["title"][:25] + "\u2026"
-        badge = " \U0001f9ea" if r["type"] == "lab" else ""
+        if r["type"] == "lab":
+            rect_class, node_label = "labrect", f"Lab {num} \U0001f9ea"
+        else:
+            rect_class, node_label = "labrect candidate", "\u25cb candidate"
         parts.append(
             f'<g class="labnode" data-lab="{r["slug"]}">'
-            f'<rect class="labrect" x="{x - 88}" y="{y - 30}" width="176" height="60" rx="10"/>'
-            f'<text class="labnum" x="{x}" y="{y - 6}" text-anchor="middle">Lab {num}{badge}</text>'
+            f'<rect class="{rect_class}" x="{x - 88}" y="{y - 30}" width="176" height="60" rx="10"/>'
+            f'<text class="labnum" x="{x}" y="{y - 6}" text-anchor="middle">{esc(node_label)}</text>'
             f'<text class="labtitle" x="{x}" y="{y + 14}" text-anchor="middle">{esc(short)}</text>'
             f'</g>'
         )
@@ -346,7 +359,7 @@ def build_board(records):
         )
 
     svg = (
-        f'<svg id="board" viewBox="0 0 {W} 900" role="img" '
+        f'<svg id="board" viewBox="0 0 {W} {board_h}" role="img" '
         f'aria-label="technique relationship board">'
         + "".join(parts) + "</svg>"
     )
@@ -373,8 +386,8 @@ def build_board(records):
         PAGE_HEAD.format(title="Board", site=SITE_NAME, tagline=TAGLINE,
                          css_path="", home="index.html", archive="archive.html")
         + "<h1>Investigation Board</h1>"
-        + '<p class="lede">Every string is a claim: red strings tie a lab to the techniques '
-        + "it uses, amber strings tie labs that evolve or chain into each other "
+        + '<p class="lede">Every string is a claim: red strings tie a lab or candidate '
+        + "to the techniques it uses, amber strings tie records that evolve or chain into each other "
         + "(hover for why). Click any node for details.</p>"
         + '<div class="legend"><span><i class="sw red"></i>uses technique</span>'
         + '<span><i class="sw amber"></i>related lab</span></div>'
