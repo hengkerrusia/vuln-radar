@@ -113,3 +113,69 @@ footer { border-top: 1px solid var(--border); margin-top: 40px; padding: 18px 0 
   .tagline { display: none; }
   .stats { gap: 18px; }
 }
+
+/* Investigation board */
+.boardwrap { position: relative; }
+#board {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #0a0d12;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+#board text {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  fill: var(--muted);
+}
+.string { fill: none; stroke: #e5484d; stroke-width: 1.5; opacity: 0.4; }
+.link { fill: none; stroke: #d29922; stroke-width: 1.5; stroke-dasharray: 6 4; opacity: 0.55; }
+.pin { fill: #e5484d; stroke: #7a1f22; stroke-width: 2; }
+.labrect { fill: var(--panel); stroke: var(--border); stroke-width: 1.5; }
+.labnum { fill: var(--text); font-size: 14px; font-weight: 700; }
+.labtitle { font-size: 10.5px; }
+.techlabel { font-size: 11px; fill: var(--text); }
+.techcount { font-size: 9.5px; }
+.series { font-size: 12px; letter-spacing: 1px; }
+.labnode, .technode { cursor: pointer; }
+#board .hl.string, #board .hl.link { opacity: 1; stroke-width: 2.5; }
+#board .hl .labrect { stroke: var(--accent); stroke-width: 2.5; }
+#board .hl .pin { stroke: #fff; }
+#board .dim { opacity: 0.15; }
+#board path.dim { opacity: 0.06; }
+.legend { display: flex; gap: 20px; margin: 6px 0 14px; color: var(--muted); font-size: 0.9em; }
+.sw {
+  display: inline-block;
+  width: 26px;
+  border-top: 2px solid #e5484d;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.sw.amber { border-top-style: dashed; border-top-color: #d29922; }
+#panel {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 300px;
+  max-width: 80%;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+#panel h3 { margin: 0 0 6px; font-size: 1.05em; }
+#panel .x {
+  float: right;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.3em;
+  cursor: pointer;
+  line-height: 1;
+}
+#panel ul { padding-left: 18px; margin: 8px 0; }
+@media (max-width: 640px) {
+  #panel { position: static; width: auto; margin-top: 12px; }
+}

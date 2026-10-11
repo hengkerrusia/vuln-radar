@@ -4,6 +4,8 @@ researcher: "GHSA-4vj7-5mj6-jm8m (CVE-2026-5078)"
 year: 2026
 url: "https://github.com/advisories/GHSA-4vj7-5mj6-jm8m"
 topics: ["CRLF Injection"]
+techniques: ["CRLF Injection", "Log Forging"]
+related: []
 type: "lab"
 status: "shipped"
 lab_url: "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/18-morgan-log-forging"

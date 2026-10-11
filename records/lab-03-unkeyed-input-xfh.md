@@ -4,6 +4,8 @@ researcher: "HackerOne #977851"
 year: 2020
 url: "https://hackerone.com/reports/977851"
 topics: ["Cache Poisoning"]
+techniques: ["Cache Poisoning"]
+related: []
 type: "lab"
 status: "shipped"
 lab_url: "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/03-unkeyed-input-xfh"

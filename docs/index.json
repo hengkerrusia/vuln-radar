@@ -7,6 +7,12 @@
     "topics": [
       "CRLF Injection"
     ],
+    "techniques": [
+      "CRLF Injection",
+      "Request Smuggling",
+      "HTTP Desync"
+    ],
+    "related": [],
     "type": "lab",
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/16-crlf-desync",
@@ -21,6 +27,10 @@
     "topics": [
       "CRLF Injection"
     ],
+    "techniques": [
+      "CRLF Injection"
+    ],
+    "related": [],
     "type": "lab",
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/17-formdata-crlf",
@@ -35,6 +45,11 @@
     "topics": [
       "CRLF Injection"
     ],
+    "techniques": [
+      "CRLF Injection",
+      "Log Forging"
+    ],
+    "related": [],
     "type": "lab",
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/18-morgan-log-forging",
@@ -48,6 +63,13 @@
     "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-65114",
     "topics": [
       "Request Smuggling"
+    ],
+    "techniques": [
+      "Request Smuggling",
+      "HTTP Desync"
+    ],
+    "related": [
+      "lab-08-paypal-clte-cache-poison: smuggling as chain entry"
     ],
     "type": "lab",
     "status": "shipped",
@@ -63,6 +85,13 @@
     "topics": [
       "CSPT"
     ],
+    "techniques": [
+      "CSPT",
+      "Web Cache Deception"
+    ],
+    "related": [
+      "lab-13-cspt-stylesheet-injection: CSPT series"
+    ],
     "type": "lab",
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/12-cspt-cache-deception",
@@ -77,6 +106,11 @@
     "topics": [
       "Request Smuggling"
     ],
+    "techniques": [
+      "Request Smuggling",
+      "HTTP Desync"
+    ],
+    "related": [],
     "type": "lab",
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/10-0cl-expect-desync",
@@ -90,6 +124,14 @@
     "url": "https://github.com/advisories/GHSA-5v79-p56f-x7c4",
     "topics": [
       "CRLF Injection"
+    ],
+    "techniques": [
+      "CRLF Injection"
+    ],
+    "related": [
+      "lab-16-crlf-desync: CRLF-powered desync",
+      "lab-17-formdata-crlf: CRLF family",
+      "lab-18-morgan-log-forging: CRLF family"
     ],
     "type": "lab",
     "status": "shipped",
@@ -105,6 +147,12 @@
     "topics": [
       "CSPT"
     ],
+    "techniques": [
+      "CSPT",
+      "Stored XSS",
+      "SSRF"
+    ],
+    "related": [],
     "type": "lab",
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/14-cspt-plugin-xss-ssrf",
@@ -118,6 +166,13 @@
     "url": "https://blog.doyensec.com/2024/07/02/cspt2csrf.html",
     "topics": [
       "CSPT"
+    ],
+    "techniques": [
+      "CSPT",
+      "CSRF"
+    ],
+    "related": [
+      "lab-12-cspt-cache-deception: CSPT series"
     ],
     "type": "lab",
     "status": "shipped",
@@ -133,6 +188,14 @@
     "topics": [
       "CSPT"
     ],
+    "techniques": [
+      "CSPT",
+      "Open Redirect",
+      "CSS Injection"
+    ],
+    "related": [
+      "lab-14-cspt-plugin-xss-ssrf: CSPT series"
+    ],
     "type": "lab",
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/13-cspt-stylesheet-injection",
@@ -147,6 +210,11 @@
     "topics": [
       "Cache Poisoning"
     ],
+    "techniques": [
+      "Cache Poisoning",
+      "Access Control Bypass"
+    ],
+    "related": [],
     "type": "lab",
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/04-method-override",
@@ -160,6 +228,13 @@
     "url": "https://portswigger.net/research/http2",
     "topics": [
       "Request Smuggling"
+    ],
+    "techniques": [
+      "Request Smuggling",
+      "HTTP Desync"
+    ],
+    "related": [
+      "lab-10-0cl-expect-desync: desync family"
     ],
     "type": "lab",
     "status": "shipped",
@@ -175,6 +250,14 @@
     "topics": [
       "Request Smuggling"
     ],
+    "techniques": [
+      "Request Smuggling",
+      "HTTP Desync"
+    ],
+    "related": [
+      "lab-07-ats-chunked-smuggling: same primitive, new vector",
+      "lab-09-h2-downgrade-desync: desync family"
+    ],
     "type": "lab",
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/06-h2c-smuggling",
@@ -189,6 +272,10 @@
     "topics": [
       "Cache Poisoning"
     ],
+    "techniques": [
+      "Cache Poisoning"
+    ],
+    "related": [],
     "type": "lab",
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/03-unkeyed-input-xfh",
@@ -203,6 +290,11 @@
     "topics": [
       "Hop-by-Hop Abuse"
     ],
+    "techniques": [
+      "Hop-by-Hop Abuse",
+      "Access Control Bypass"
+    ],
+    "related": [],
     "type": "lab",
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/01-hop-by-hop-xff-bypass",
@@ -217,6 +309,11 @@
     "topics": [
       "Cache Poisoning"
     ],
+    "techniques": [
+      "Cache Poisoning",
+      "Denial of Service"
+    ],
+    "related": [],
     "type": "lab",
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/05-cpdos-error-caching",
@@ -231,6 +328,14 @@
     "topics": [
       "Request Smuggling"
     ],
+    "techniques": [
+      "Request Smuggling",
+      "Cache Poisoning",
+      "Stored XSS"
+    ],
+    "related": [
+      "lab-14-cspt-plugin-xss-ssrf: stored XSS as final impact"
+    ],
     "type": "lab",
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/08-paypal-clte-cache-poison",
@@ -244,6 +349,12 @@
     "url": "https://omergil.blogspot.com/2017/02/web-cache-deception-attack.html",
     "topics": [
       "Cache Poisoning"
+    ],
+    "techniques": [
+      "Web Cache Deception"
+    ],
+    "related": [
+      "lab-12-cspt-cache-deception: deception primitive, new vector (CSPT)"
     ],
     "type": "lab",
     "status": "shipped",

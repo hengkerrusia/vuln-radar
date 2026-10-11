@@ -4,6 +4,8 @@ researcher: "James Kettle"
 year: 2025
 url: "https://portswigger.net/research/http1-must-die"
 topics: ["Request Smuggling"]
+techniques: ["Request Smuggling", "HTTP Desync"]
+related: []
 type: "lab"
 status: "shipped"
 lab_url: "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/10-0cl-expect-desync"

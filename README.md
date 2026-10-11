@@ -22,6 +22,8 @@ researcher: "James Kettle"
 year: 2021
 url: "https://portswigger.net/research/http2"   # original publication — always link the original
 topics: ["Request Smuggling"]                    # free-form, keep consistent
+techniques: ["Request Smuggling", "HTTP Desync"]  # fine-grained graph nodes for the Board
+related: ["lab-07-ats-chunked-smuggling: same primitive, new vector"]  # "slug: why" edges
 type: "finding"                                   # finding | lab
 status: "candidate"                               # candidate | in-progress | shipped
 lab_url: ""                                       # set when a lab ships
@@ -34,6 +36,12 @@ Rules (stolen from webhacklist, adapted):
 - `url` must be the **original publication** — never a rehash, never Medium.
 - One record per research item, not per CVE instance, unless the instance adds a new sub-technique.
 - `topics` reuse the fixthecode lab categories where possible.
+- `techniques` are the Board's graph nodes — finer-grained than topics
+  (e.g. a record tagged `Request Smuggling` can still link the `Stored XSS` node).
+  Every string on the Board is a curated claim, so only list techniques the
+  record genuinely uses.
+- `related` edges are `"other-record-slug: why"` — the *why* is shown on hover,
+  so write it like an investigator's note, not a tag.
 
 ## Build
 
