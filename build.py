@@ -280,7 +280,7 @@ def build_board(records):
         ("Labs 6\u201310 \u00b7 request smuggling / desync", [6, 7, 8, 9, 10]),
         ("Labs 11\u201314 \u00b7 CSPT", [11, 12, 13, 14]),
         ("Labs 15\u201318 \u00b7 CRLF", [15, 16, 17, 18]),
-        ("Lab 19 \u00b7 file inclusion / path traversal", [19]),
+        ("Labs 19\u201320 \u00b7 file inclusion / path traversal", [19, 20]),
     ]
     node_pos, captions = {}, []
     y = 300
