@@ -15,7 +15,7 @@
   </div>
 </header>
 <main class="wrap">
-<h1>2025</h1><p class="lede">5 records.</p><article class="card">
+<h1>2025</h1><p class="lede">6 records.</p><article class="card">
   <h3>Apache Traffic Server chunked smuggling<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2025 — CVE-2025-65114</div>
   <div class="topics"><span class="topic">Request Smuggling</span></div>
@@ -28,6 +28,13 @@
   <div class="topics"><span class="topic">CSPT</span></div>
   <p>Chaining client-side path traversal with web cache deception — turning a non-impactful finding into account takeover. From a private bounty audit.</p>
   <div class="links"><a href="https://zere.es/posts/cache-deception-cspt-account-takeover/" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/12-cspt-cache-deception" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
+</article>
+<article class="card">
+  <h3>CVE-2025-53640: Indico BOLA /api/principals → PII exposure<span class="badge candidate">candidate</span></h3>
+  <div class="meta">2025 — rafaelcorvino1</div>
+  <div class="topics"><span class="topic">IDOR</span></div>
+  <p>POST /api/principals with {\&quot;values\&quot;:[\&quot;User:&lt;id&gt;\&quot;]} dumped name/email/affiliation for arbitrary user IDs — no authorization on the object reference. Affects Indico 2.2–3.3.6, fixed in 3.3.7. CWE-639; working PoC published.</p>
+  <div class="links"><a href="https://github.com/rafaelcorvino1/CVE-2025-53640" target="_blank" rel="noopener">Read the original ↗</a></div>
 </article>
 <article class="card">
   <h3>HTTP/1.1 Must Die: The Desync Endgame<span class="badge lab">🧪 lab</span></h3>
