@@ -361,7 +361,7 @@ def build_board(records):
     svg = (
         f'<svg id="board" viewBox="0 0 {W} {board_h}" role="img" '
         f'aria-label="technique relationship board">'
-        + "".join(parts) + "</svg>"
+        + '<g id="viewport">' + "".join(parts) + "</g></svg>"
     )
     data = {
         r["slug"]: {
@@ -391,6 +391,12 @@ def build_board(records):
         + "(hover for why). Click any node for details.</p>"
         + '<div class="legend"><span><i class="sw red"></i>uses technique</span>'
         + '<span><i class="sw amber"></i>related lab</span></div>'
+        + '<div class="boardtools">'
+        + '<button id="zin" aria-label="zoom in">+</button>'
+        + '<button id="zout" aria-label="zoom out">\u2212</button>'
+        + '<button id="zreset">reset</button>'
+        + '<span class="hint">drag to pan \u00b7 ctrl+scroll to zoom</span>'
+        + "</div>"
         + '<div class="boardwrap">' + svg
         + '<aside id="panel" hidden></aside></div>'
         + "<script>const BOARD_DATA = " + json.dumps(data, ensure_ascii=False) + ";</script>\n"

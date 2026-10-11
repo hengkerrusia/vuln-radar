@@ -81,6 +81,7 @@
   }
 
   svg.addEventListener("click", function (ev) {
+    if (suppressClick) return;
     var lab = ev.target.closest(".labnode");
     var tech = ev.target.closest(".technode");
     if (lab) {
@@ -119,4 +120,78 @@
       labPanel(slug);
     }
   });
+
+  // ---- zoom & pan (vanilla JS, no dependencies) ----
+  var suppressClick = false;
+  var viewport = document.getElementById("viewport");
+  var zin = document.getElementById("zin");
+  var zout = document.getElementById("zout");
+  var zreset = document.getElementById("zreset");
+  var view = { x: 0, y: 0, k: 1 };
+  function vbH() { return svg.viewBox.baseVal.height; }
+  function applyView() {
+    viewport.setAttribute("transform",
+      "translate(" + view.x + " " + view.y + ") scale(" + view.k + ")");
+  }
+  function zoomAt(px, py, factor) {
+    var k2 = Math.min(5, Math.max(0.35, view.k * factor));
+    var s = k2 / view.k;
+    view.x = px - (px - view.x) * s;
+    view.y = py - (py - view.y) * s;
+    view.k = k2;
+    applyView();
+  }
+  function clientToVB(ev) {
+    var r = svg.getBoundingClientRect();
+    return {
+      x: (ev.clientX - r.left) / r.width * 1200,
+      y: (ev.clientY - r.top) / r.height * vbH()
+    };
+  }
+  function zoomCenter(f) { zoomAt(600, vbH() / 2, f); }
+  if (zin) zin.addEventListener("click", function () { zoomCenter(1.25); });
+  if (zout) zout.addEventListener("click", function () { zoomCenter(1 / 1.25); });
+  if (zreset) zreset.addEventListener("click", function () {
+    view = { x: 0, y: 0, k: 1 };
+    applyView();
+  });
+  svg.addEventListener("wheel", function (ev) {
+    if (!ev.ctrlKey) return;
+    ev.preventDefault();
+    var p = clientToVB(ev);
+    zoomAt(p.x, p.y, ev.deltaY < 0 ? 1.15 : 1 / 1.15);
+  }, { passive: false });
+
+  var panning = false, lastX = 0, lastY = 0, moved = false;
+  svg.addEventListener("pointerdown", function (ev) {
+    panning = true;
+    moved = false;
+    lastX = ev.clientX;
+    lastY = ev.clientY;
+    svg.classList.add("grabbing");
+    try { svg.setPointerCapture(ev.pointerId); } catch (e) {}
+  });
+  svg.addEventListener("pointermove", function (ev) {
+    if (!panning) return;
+    var dx = ev.clientX - lastX, dy = ev.clientY - lastY;
+    if (Math.abs(dx) + Math.abs(dy) > 3) moved = true;
+    if (moved) {
+      var r = svg.getBoundingClientRect();
+      view.x += dx / r.width * 1200;
+      view.y += dy / r.height * vbH();
+      lastX = ev.clientX;
+      lastY = ev.clientY;
+      applyView();
+    }
+  });
+  function endPan() {
+    if (panning && moved) {
+      suppressClick = true;
+      setTimeout(function () { suppressClick = false; }, 60);
+    }
+    panning = false;
+    svg.classList.remove("grabbing");
+  }
+  svg.addEventListener("pointerup", endPan);
+  svg.addEventListener("pointercancel", endPan);
 })();
