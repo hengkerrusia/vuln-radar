@@ -145,6 +145,16 @@ footer { border-top: 1px solid var(--border); margin-top: 40px; padding: 18px 0 
 #board .dim { opacity: 0.15; }
 #board path.dim { opacity: 0.06; }
 .legend { display: flex; gap: 20px; margin: 6px 0 14px; color: var(--muted); font-size: 0.9em; }
+.boardtools { display: flex; gap: 8px; align-items: center; margin: 8px 0 12px; }
+.boardtools button {
+  font: inherit; cursor: pointer; color: var(--text);
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 8px; min-width: 34px; height: 30px; padding: 0 10px;
+}
+.boardtools button:hover { border-color: var(--accent); }
+.boardtools .hint { color: var(--muted); font-size: 0.85em; }
+#board { cursor: grab; touch-action: pan-y; }
+#board.grabbing { cursor: grabbing; }
 .sw {
   display: inline-block;
   width: 26px;
