@@ -15,12 +15,19 @@
   </div>
 </header>
 <main class="wrap">
-<h1>2026</h1><p class="lede">3 records.</p><article class="card">
+<h1>2026</h1><p class="lede">4 records.</p><article class="card">
   <h3>CRLF-Powered Desync Attacks<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2026 — PortSwigger Research</div>
   <div class="topics"><span class="topic">CRLF Injection</span></div>
   <p>CRLF injection that splits a request at a proxy — desync leading to response queue poisoning.</p>
   <div class="links"><a href="https://portswigger.net/research/crlf-powered-desync-attacks" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/16-crlf-desync" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
+</article>
+<article class="card">
+  <h3>CVE-2026-87902: WordPress file inclusion<span class="badge candidate">candidate</span></h3>
+  <div class="meta">2026 — Robert Ressl</div>
+  <div class="topics"><span class="topic">File Inclusion</span></div>
+  <p>Unauthenticated LFI in WordPress get_page_template() via double-encoded pagename — realpath() canonicalizes but never proves containment in the theme directory. Conditional RCE via pearcmd.php.</p>
+  <div class="links"><a href="https://ressl.ch/blog/cve-2026-87902-wordpress/" target="_blank" rel="noopener">Read the original ↗</a></div>
 </article>
 <article class="card">
   <h3>form-data CRLF injection<span class="badge lab">🧪 lab</span></h3>

@@ -132,6 +132,7 @@ footer { border-top: 1px solid var(--border); margin-top: 40px; padding: 18px 0 
 .link { fill: none; stroke: #d29922; stroke-width: 1.5; stroke-dasharray: 6 4; opacity: 0.55; }
 .pin { fill: #e5484d; stroke: #7a1f22; stroke-width: 2; }
 .labrect { fill: var(--panel); stroke: var(--border); stroke-width: 1.5; }
+.labrect.candidate { stroke-dasharray: 7 4; opacity: 0.85; }
 .labnum { fill: var(--text); font-size: 14px; font-weight: 700; }
 .labtitle { font-size: 10.5px; }
 .techlabel { font-size: 11px; fill: var(--text); }
