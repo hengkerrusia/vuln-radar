@@ -20,6 +20,27 @@
     "slug": "lab-16-crlf-desync"
   },
   {
+    "title": "CVE-2026-38529: Krayin CRM BOLA → password reset → ATO",
+    "researcher": "",
+    "year": 2026,
+    "url": "https://cve.report/CVE-2026-38529.pdf",
+    "topics": [
+      "IDOR"
+    ],
+    "techniques": [
+      "IDOR",
+      "BOLA"
+    ],
+    "related": [
+      "finding-indico-cve-2025-53640: both are BOLA in real open-source software; Krayin allows password reset → ATO, Indico leaks PII"
+    ],
+    "type": "finding",
+    "status": "candidate",
+    "lab_url": "",
+    "summary": "BOLA in Krayin CRM v2.2.x Settings/UserController.php allows arbitrary password reset → full ATO. CVSS 8.8 High, CWE-269 + CWE-639. PoC and exact fix commit not yet verified — verify before building a lab.",
+    "slug": "finding-krayin-cve-2026-38529"
+  },
+  {
     "title": "CVE-2026-87902: WordPress file inclusion",
     "researcher": "Robert Ressl",
     "year": 2026,
@@ -57,6 +78,27 @@
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/17-formdata-crlf",
     "summary": "CRLF smuggled in a multipart filename becomes a real parsed header part — header injection via form-data.",
     "slug": "lab-17-formdata-crlf"
+  },
+  {
+    "title": "H1 #3723458: Khan Academy regex bypass → 1-click ATO",
+    "researcher": "",
+    "year": 2026,
+    "url": "https://hackerone.com/reports/3723458",
+    "topics": [
+      "Open Redirect"
+    ],
+    "techniques": [
+      "Open Redirect"
+    ],
+    "related": [
+      "finding-expo-oauth-cve-2023-28131: both are redirect-driven token theft → ATO; Khan bypasses an unescaped-dot regex, Expo bypasses a case-sensitive scheme check",
+      "finding-mopub-h1-683298: both are open redirects with real impact; Khan steals an auth-transfer token, MoPub escalates to XSS via javascript: scheme"
+    ],
+    "type": "finding",
+    "status": "candidate",
+    "lab_url": "",
+    "summary": "KA_DOMAIN_REGEX left dots in uc.a.run.app unescaped, so attacker-registered xfarr-6fmjyrz2lq-uc-a-run.app passed validation; ?continue= login flow delivered a one-time transfer auth token to the attacker server → replay → full session cookies → 1-click ATO. Report frames it as a critical/P0 chain.",
+    "slug": "finding-khan-academy-h1-3723458"
   },
   {
     "title": "morgan log forging",
@@ -118,6 +160,28 @@
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/12-cspt-cache-deception",
     "summary": "Chaining client-side path traversal with web cache deception — turning a non-impactful finding into account takeover. From a private bounty audit.",
     "slug": "lab-12-cspt-cache-deception"
+  },
+  {
+    "title": "CVE-2025-53640: Indico BOLA /api/principals → PII exposure",
+    "researcher": "rafaelcorvino1",
+    "year": 2025,
+    "url": "https://github.com/rafaelcorvino1/CVE-2025-53640",
+    "topics": [
+      "IDOR"
+    ],
+    "techniques": [
+      "IDOR",
+      "BOLA"
+    ],
+    "related": [
+      "finding-valve-h1-391217: both are missing object authorization → mass exposure; Indico exposes user PII, Valve exposes game CD keys",
+      "finding-krayin-cve-2026-38529: both are BOLA in real open-source software; Indico leaks PII, Krayin allows password reset → ATO"
+    ],
+    "type": "finding",
+    "status": "candidate",
+    "lab_url": "",
+    "summary": "POST /api/principals with {\\\"values\\\":[\\\"User:<id>\\\"]} dumped name/email/affiliation for arbitrary user IDs — no authorization on the object reference. Affects Indico 2.2–3.3.6, fixed in 3.3.7. CWE-639; working PoC published.",
+    "slug": "finding-indico-cve-2025-53640"
   },
   {
     "title": "HTTP/1.1 Must Die: The Desync Endgame",
@@ -221,6 +285,46 @@
     "slug": "finding-canto-rfi-cve-2023-3452"
   },
   {
+    "title": "CVE-2023-28131: Expo OAuth proxy open redirect → ATO",
+    "researcher": "Salt Labs (Salt Security)",
+    "year": 2023,
+    "url": "https://salt.security/blog/a-new-oauth-vulnerability-that-may-impact-hundreds-of-online-services",
+    "topics": [
+      "Open Redirect"
+    ],
+    "techniques": [
+      "Open Redirect"
+    ],
+    "related": [
+      "finding-khan-academy-h1-3723458: both are redirect-driven token theft → ATO; Expo bypasses a case-sensitive scheme check, Khan bypasses an unescaped-dot regex"
+    ],
+    "type": "finding",
+    "status": "candidate",
+    "lab_url": "",
+    "summary": "AuthSession proxy (auth.expo.io) stored attacker-influenced returnUrl in a cookie, then redirected the OAuth fragment (code+token) to it — bypassable with mixed-case hTTps://. Full ATO demonstrated on Codecademy. CVSS 9.6, hotfixed within hours.",
+    "slug": "finding-expo-oauth-cve-2023-28131"
+  },
+  {
+    "title": "H1 #2293343: GitLab password reset array pollution → ATO",
+    "researcher": "asterion04",
+    "year": 2023,
+    "url": "https://hackerone.com/reports/2293343",
+    "topics": [
+      "IDOR"
+    ],
+    "techniques": [
+      "IDOR"
+    ],
+    "related": [
+      "finding-stripe-h1-1250037: both are IDOR → ATO via account identity flows; GitLab pollutes the reset recipient, Stripe changes the account email"
+    ],
+    "type": "finding",
+    "status": "candidate",
+    "lab_url": "",
+    "summary": "Array-polluting user[email] in the password-reset request redirected the reset link to the attacker's address → one-request ATO with no victim interaction. Critical 10.0, $35,000 bounty verified on the report page.",
+    "slug": "finding-gitlab-h1-2293343"
+  },
+  {
     "title": "PHP filter chains",
     "researcher": "Synacktiv",
     "year": 2022,
@@ -300,6 +404,27 @@
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/04-method-override",
     "summary": "Method-override header turns a cacheable GET into an error response that gets cached — cache-poisoned denial of service. $2,500.",
     "slug": "lab-04-method-override"
+  },
+  {
+    "title": "H1 #1250037: Stripe IDOR email change → ATO",
+    "researcher": "dk82hg",
+    "year": 2021,
+    "url": "https://hackerone.com/reports/1250037",
+    "topics": [
+      "IDOR"
+    ],
+    "techniques": [
+      "IDOR"
+    ],
+    "related": [
+      "finding-gitlab-h1-2293343: both are IDOR → ATO via account identity flows; Stripe changes the account email, GitLab pollutes the reset recipient",
+      "finding-paypal-h1-415081: both are IDOR in account management; Stripe takes over accounts via email change, PayPal escalates privilege across merchants"
+    ],
+    "type": "finding",
+    "status": "candidate",
+    "lab_url": "",
+    "summary": "Account-update endpoint not bound to session identity → attacker changed another user's email, then reset the password → full ATO. Critical, $3,000 bounty verified on the report page.",
+    "slug": "finding-stripe-h1-1250037"
   },
   {
     "title": "HTTP/2: The Sequel is Always Worse",
@@ -401,6 +526,26 @@
     "slug": "lab-05-cpdos-error-caching"
   },
   {
+    "title": "H1 #683298: MoPub login open redirect → XSS via javascript: URI",
+    "researcher": "jackb898",
+    "year": 2019,
+    "url": "https://hackerone.com/reports/683298",
+    "topics": [
+      "Open Redirect"
+    ],
+    "techniques": [
+      "Open Redirect"
+    ],
+    "related": [
+      "finding-khan-academy-h1-3723458: both are open redirects with real impact; MoPub escalates to XSS via javascript: scheme, Khan steals an auth-transfer token"
+    ],
+    "type": "finding",
+    "status": "candidate",
+    "lab_url": "",
+    "summary": "app.mopub.com/login?next= accepted arbitrary destinations including the javascript: scheme → post-login reflected XSS in the victim's session. Bounty paid (amount not shown on the report page).",
+    "slug": "finding-mopub-h1-683298"
+  },
+  {
     "title": "PayPal CL.TE desync to stored XSS",
     "researcher": "HackerOne #488147",
     "year": 2019,
@@ -421,6 +566,46 @@
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/08-paypal-clte-cache-poison",
     "summary": "CL.TE request smuggling poisons the cache with attacker content — stored XSS on /signin. $18,900.",
     "slug": "lab-08-paypal-clte-cache-poison"
+  },
+  {
+    "title": "H1 #391217: Valve partner CD keys IDOR",
+    "researcher": "moskowsky",
+    "year": 2018,
+    "url": "https://hackerone.com/reports/391217",
+    "topics": [
+      "IDOR"
+    ],
+    "techniques": [
+      "IDOR"
+    ],
+    "related": [
+      "finding-indico-cve-2025-53640: both are missing object authorization → mass exposure; Valve exposes game CD keys, Indico exposes user PII"
+    ],
+    "type": "finding",
+    "status": "candidate",
+    "lab_url": "",
+    "summary": "/partnercdkeys/assignkeys/ performed no object-level authorization → any partner could pull all CD keys of any game. Critical, $20,000 bounty ($15k + bonus) verified on the report page.",
+    "slug": "finding-valve-h1-391217"
+  },
+  {
+    "title": "H1 #415081: PayPal IDOR → cross-merchant privilege escalation",
+    "researcher": "born2hack",
+    "year": 2018,
+    "url": "https://hackerone.com/reports/415081",
+    "topics": [
+      "IDOR"
+    ],
+    "techniques": [
+      "IDOR"
+    ],
+    "related": [
+      "finding-stripe-h1-1250037: both are IDOR in account management; PayPal escalates privilege across merchants, Stripe takes over accounts via email change"
+    ],
+    "type": "finding",
+    "status": "candidate",
+    "lab_url": "",
+    "summary": ".../businessmanage/users/api/v1/users let the caller add secondary users to other merchants' business accounts — no ownership check on the target account ID. High 7.1, $10,500 bounty verified on the report page.",
+    "slug": "finding-paypal-h1-415081"
   },
   {
     "title": "Zip Slip",
