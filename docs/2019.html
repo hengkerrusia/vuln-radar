@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2019 — VulnRadar</title>
 <link rel="stylesheet" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="VulnRadar" href="feed.xml">
 </head>
 <body>
 <header class="site-header">
@@ -15,28 +16,28 @@
   </div>
 </header>
 <main class="wrap">
-<h1>2019</h1><p class="lede">4 records.</p><article class="card">
+<h1>2019</h1><p class="lede">4 records.</p><article class="card lab">
   <h3>Abusing HTTP hop-by-hop request headers<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2019 — Nathan Davison</div>
   <div class="topics"><span class="topic">Hop-by-Hop Abuse</span></div>
   <p>Connection header tricks proxies into stripping security headers (X-Forwarded-For, Authorization) before the backend — enabling admin bypass and IP spoofing.</p>
   <div class="links"><a href="https://nathandavison.com/blog/abusing-http-hop-by-hop-request-headers" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/01-hop-by-hop-xff-bypass" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
-<article class="card">
+<article class="card lab">
   <h3>Cache Poisoned Denial of Service (CPDoS)<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2019 — CCS 2019</div>
   <div class="topics"><span class="topic">Cache Poisoning</span></div>
   <p>Caching error responses (e.g. 403s) triggered by attacker-controlled headers — denial of service for every user behind the cache.</p>
   <div class="links"><a href="https://cpdos.org/" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/05-cpdos-error-caching" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
-<article class="card">
+<article class="card candidate">
   <h3>H1 #683298: MoPub login open redirect → XSS via javascript: URI<span class="badge candidate">candidate</span></h3>
   <div class="meta">2019 — jackb898</div>
   <div class="topics"><span class="topic">Open Redirect</span></div>
   <p>app.mopub.com/login?next= accepted arbitrary destinations including the javascript: scheme → post-login reflected XSS in the victim&#x27;s session. Bounty paid (amount not shown on the report page).</p>
   <div class="links"><a href="https://hackerone.com/reports/683298" target="_blank" rel="noopener">Read the original ↗</a></div>
 </article>
-<article class="card">
+<article class="card lab">
   <h3>PayPal CL.TE desync to stored XSS<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2019 — HackerOne #488147</div>
   <div class="topics"><span class="topic">Request Smuggling</span></div>

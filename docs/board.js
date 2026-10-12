@@ -3,6 +3,7 @@
   var svg = document.getElementById("board");
   var panel = document.getElementById("panel");
   if (!svg || !panel) return;
+  var suppressClick = false; // set after a real pan so the release click doesn't fire
 
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
@@ -82,8 +83,12 @@
 
   svg.addEventListener("click", function (ev) {
     if (suppressClick) return;
-    var lab = ev.target.closest(".labnode");
-    var tech = ev.target.closest(".technode");
+    openAt(ev.target);
+  });
+
+  function openAt(target) {
+    var lab = target.closest(".labnode");
+    var tech = target.closest(".technode");
     if (lab) {
       var slug = lab.getAttribute("data-lab");
       highlight("lab", slug);
@@ -96,6 +101,16 @@
       clearHl();
       panel.hidden = true;
     }
+  }
+
+  // keyboard: Enter/Space on a focused node opens it, same as click
+  svg.addEventListener("keydown", function (ev) {
+    if (ev.key !== "Enter" && ev.key !== " ") return;
+    var t = document.activeElement;
+    if (!t || !svg.contains(t)) return;
+    if (!t.closest(".labnode") && !t.closest(".technode")) return;
+    ev.preventDefault();
+    openAt(t);
   });
 
   svg.addEventListener("mouseover", function (ev) {
@@ -122,7 +137,6 @@
   });
 
   // ---- zoom & pan (vanilla JS, no dependencies) ----
-  var suppressClick = false;
   var viewport = document.getElementById("viewport");
   var zin = document.getElementById("zin");
   var zout = document.getElementById("zout");
@@ -162,32 +176,32 @@
     zoomAt(p.x, p.y, ev.deltaY < 0 ? 1.15 : 1 / 1.15);
   }, { passive: false });
 
-  var panning = false, lastX = 0, lastY = 0, moved = false;
+  var panning = false, downX = 0, downY = 0, lastX = 0, lastY = 0;
   svg.addEventListener("pointerdown", function (ev) {
     panning = true;
-    moved = false;
-    lastX = ev.clientX;
-    lastY = ev.clientY;
+    downX = lastX = ev.clientX;
+    downY = lastY = ev.clientY;
     svg.classList.add("grabbing");
     try { svg.setPointerCapture(ev.pointerId); } catch (e) {}
   });
   svg.addEventListener("pointermove", function (ev) {
     if (!panning) return;
     var dx = ev.clientX - lastX, dy = ev.clientY - lastY;
-    if (Math.abs(dx) + Math.abs(dy) > 3) moved = true;
-    if (moved) {
-      var r = svg.getBoundingClientRect();
-      view.x += dx / r.width * 1200;
-      view.y += dy / r.height * vbH();
-      lastX = ev.clientX;
-      lastY = ev.clientY;
-      applyView();
-    }
+    lastX = ev.clientX;
+    lastY = ev.clientY;
+    var r = svg.getBoundingClientRect();
+    view.x += dx / r.width * 1200;
+    view.y += dy / r.height * vbH();
+    applyView();
   });
-  function endPan() {
-    if (panning && moved) {
-      suppressClick = true;
-      setTimeout(function () { suppressClick = false; }, 60);
+  function endPan(ev) {
+    if (panning) {
+      // suppress the click only after a real drag (total distance from pointerdown)
+      var dist = Math.abs(ev.clientX - downX) + Math.abs(ev.clientY - downY);
+      if (dist > 5) {
+        suppressClick = true;
+        setTimeout(function () { suppressClick = false; }, 60);
+      }
     }
     panning = false;
     svg.classList.remove("grabbing");

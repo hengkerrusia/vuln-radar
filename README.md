@@ -27,6 +27,7 @@ related: ["lab-07-ats-chunked-smuggling: same primitive, new vector"]  # "slug: 
 type: "finding"                                   # finding | lab
 status: "candidate"                               # candidate | in-progress | shipped
 lab_url: ""                                       # set when a lab ships
+added: "2026-10-12"                               # YYYY-MM-DD, when added to the index (drives the "new" badge + RSS order); "" = unknown
 summary: "One or two lines on the technique."
 ---
 ```
