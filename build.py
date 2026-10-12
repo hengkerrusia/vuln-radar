@@ -296,7 +296,7 @@ SERIES = [
     ("Labs 6–10 · request smuggling / desync", [6, 7, 8, 9, 10]),
     ("Labs 11–14 · CSPT", [11, 12, 13, 14]),
     ("Labs 15–18 · CRLF", [15, 16, 17, 18]),
-    ("Labs 19–21 · file inclusion / path traversal", [19, 20, 21]),
+    ("Labs 19–22 · file inclusion / path traversal", [19, 20, 21, 22]),
 ]
 
 

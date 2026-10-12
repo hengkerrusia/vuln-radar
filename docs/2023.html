@@ -16,12 +16,12 @@
   </div>
 </header>
 <main class="wrap">
-<h1>2023</h1><p class="lede">3 records.</p><article class="card candidate">
-  <h3>Canto &lt;= 3.0.4 unauthenticated remote file inclusion<span class="badge candidate">candidate</span></h3>
+<h1>2023</h1><p class="lede">3 records.</p><article class="card lab">
+  <h3>Canto remote file inclusion (CVE-2023-3452)<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2023 — Marco Wotschka (Wordfence)</div>
   <div class="topics"><span class="topic">File Inclusion</span></div>
-  <p>CVE-2023-3452 (CVSS 9.8): unauthenticated wp_abspath parameter passed into require_once() — direct RCE when allow_url_include=On. RFI is nearly extinct in modern apps; the misconfiguration is the teaching point.</p>
-  <div class="links"><a href="https://www.wordfence.com/threat-intel/vulnerabilities/id/a76077c6-700a-4d21-a930-b0d6455d959c" target="_blank" rel="noopener">Read the original ↗</a></div>
+  <p>CVE-2023-3452 (CVSS 9.8): unauthenticated wp_abspath parameter passed into require_once() — data:// wrapper gives single-request RCE when allow_url_include=On. RFI is nearly extinct in modern apps; the misconfiguration is the teaching point.</p>
+  <div class="links"><a href="https://www.wordfence.com/threat-intel/vulnerabilities/id/a76077c6-700a-4d21-a930-b0d6455d959c" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/22-canto-rfi" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 <article class="card candidate">
   <h3>CVE-2023-28131: Expo OAuth proxy open redirect → ATO<span class="badge candidate">candidate</span></h3>
