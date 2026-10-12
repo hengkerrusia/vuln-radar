@@ -17,7 +17,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/16-crlf-desync",
     "summary": "CRLF injection that splits a request at a proxy — desync leading to response queue poisoning.",
-    "slug": "lab-16-crlf-desync"
+    "slug": "lab-16-crlf-desync",
+    "added": ""
   },
   {
     "title": "CVE-2026-38529: Krayin CRM BOLA → password reset → ATO",
@@ -38,7 +39,8 @@
     "status": "candidate",
     "lab_url": "",
     "summary": "BOLA in Krayin CRM v2.2.x Settings/UserController.php allows arbitrary password reset → full ATO. CVSS 8.8 High, CWE-269 + CWE-639. PoC and exact fix commit not yet verified — verify before building a lab.",
-    "slug": "finding-krayin-cve-2026-38529"
+    "slug": "finding-krayin-cve-2026-38529",
+    "added": ""
   },
   {
     "title": "CVE-2026-87902: WordPress file inclusion",
@@ -59,7 +61,8 @@
     "status": "candidate",
     "lab_url": "",
     "summary": "Unauthenticated LFI in WordPress get_page_template() via double-encoded pagename — realpath() canonicalizes but never proves containment in the theme directory. Conditional RCE via pearcmd.php.",
-    "slug": "finding-wordpress-cve-2026-87902"
+    "slug": "finding-wordpress-cve-2026-87902",
+    "added": ""
   },
   {
     "title": "form-data CRLF injection",
@@ -77,7 +80,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/17-formdata-crlf",
     "summary": "CRLF smuggled in a multipart filename becomes a real parsed header part — header injection via form-data.",
-    "slug": "lab-17-formdata-crlf"
+    "slug": "lab-17-formdata-crlf",
+    "added": ""
   },
   {
     "title": "H1 #3723458: Khan Academy regex bypass → 1-click ATO",
@@ -98,7 +102,8 @@
     "status": "candidate",
     "lab_url": "",
     "summary": "KA_DOMAIN_REGEX left dots in uc.a.run.app unescaped, so attacker-registered xfarr-6fmjyrz2lq-uc-a-run.app passed validation; ?continue= login flow delivered a one-time transfer auth token to the attacker server → replay → full session cookies → 1-click ATO. Report frames it as a critical/P0 chain.",
-    "slug": "finding-khan-academy-h1-3723458"
+    "slug": "finding-khan-academy-h1-3723458",
+    "added": ""
   },
   {
     "title": "morgan log forging",
@@ -117,7 +122,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/18-morgan-log-forging",
     "summary": "CRLF in a Basic-auth username passes through to the morgan logger — log forging via unsanitized log sink.",
-    "slug": "lab-18-morgan-log-forging"
+    "slug": "lab-18-morgan-log-forging",
+    "added": ""
   },
   {
     "title": "Apache Traffic Server chunked smuggling",
@@ -138,7 +144,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/07-ats-chunked-smuggling",
     "summary": "Stale CR flag in ATS chunked parser lets smuggled requests slip through to the origin — HTTP request smuggling via parser differentials.",
-    "slug": "lab-07-ats-chunked-smuggling"
+    "slug": "lab-07-ats-chunked-smuggling",
+    "added": ""
   },
   {
     "title": "Cache Deception + CSPT to Account Takeover",
@@ -159,7 +166,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/12-cspt-cache-deception",
     "summary": "Chaining client-side path traversal with web cache deception — turning a non-impactful finding into account takeover. From a private bounty audit.",
-    "slug": "lab-12-cspt-cache-deception"
+    "slug": "lab-12-cspt-cache-deception",
+    "added": ""
   },
   {
     "title": "CVE-2025-53640: Indico BOLA /api/principals → PII exposure",
@@ -181,7 +189,8 @@
     "status": "candidate",
     "lab_url": "",
     "summary": "POST /api/principals with {\\\"values\\\":[\\\"User:<id>\\\"]} dumped name/email/affiliation for arbitrary user IDs — no authorization on the object reference. Affects Indico 2.2–3.3.6, fixed in 3.3.7. CWE-639; working PoC published.",
-    "slug": "finding-indico-cve-2025-53640"
+    "slug": "finding-indico-cve-2025-53640",
+    "added": ""
   },
   {
     "title": "HTTP/1.1 Must Die: The Desync Endgame",
@@ -200,7 +209,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/10-0cl-expect-desync",
     "summary": "0.CL desync via Expect: 100-continue — the desync endgame. Servers that assume Content-Length is always present can be desynced.",
-    "slug": "lab-10-0cl-expect-desync"
+    "slug": "lab-10-0cl-expect-desync",
+    "added": ""
   },
   {
     "title": "Pi-hole response splitting to session fixation",
@@ -222,7 +232,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/15-crlf-response-splitting",
     "summary": "CRLF injection in Pi-hole admin — response splitting injects Set-Cookie, leading to session fixation.",
-    "slug": "lab-15-crlf-response-splitting"
+    "slug": "lab-15-crlf-response-splitting",
+    "added": ""
   },
   {
     "title": "The Grafana Ghost",
@@ -242,7 +253,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/14-cspt-plugin-xss-ssrf",
     "summary": "CSPT via Grafana plugin loader — open redirect to XSS to SSRF. CVE-2025-4123.",
-    "slug": "lab-14-cspt-plugin-xss-ssrf"
+    "slug": "lab-14-cspt-plugin-xss-ssrf",
+    "added": ""
   },
   {
     "title": "CSPT2CSRF",
@@ -263,7 +275,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/11-cspt-csrf",
     "summary": "Client-Side Path Traversal turns into CSRF — path confusion makes the browser issue state-changing requests to attacker-influenced paths.",
-    "slug": "lab-11-cspt-csrf"
+    "slug": "lab-11-cspt-csrf",
+    "added": ""
   },
   {
     "title": "Canto <= 3.0.4 unauthenticated remote file inclusion",
@@ -282,7 +295,8 @@
     "status": "candidate",
     "lab_url": "",
     "summary": "CVE-2023-3452 (CVSS 9.8): unauthenticated wp_abspath parameter passed into require_once() — direct RCE when allow_url_include=On. RFI is nearly extinct in modern apps; the misconfiguration is the teaching point.",
-    "slug": "finding-canto-rfi-cve-2023-3452"
+    "slug": "finding-canto-rfi-cve-2023-3452",
+    "added": ""
   },
   {
     "title": "CVE-2023-28131: Expo OAuth proxy open redirect → ATO",
@@ -302,7 +316,8 @@
     "status": "candidate",
     "lab_url": "",
     "summary": "AuthSession proxy (auth.expo.io) stored attacker-influenced returnUrl in a cookie, then redirected the OAuth fragment (code+token) to it — bypassable with mixed-case hTTps://. Full ATO demonstrated on Codecademy. CVSS 9.6, hotfixed within hours.",
-    "slug": "finding-expo-oauth-cve-2023-28131"
+    "slug": "finding-expo-oauth-cve-2023-28131",
+    "added": ""
   },
   {
     "title": "H1 #2293343: GitLab password reset array pollution → ATO",
@@ -322,7 +337,8 @@
     "status": "candidate",
     "lab_url": "",
     "summary": "Array-polluting user[email] in the password-reset request redirected the reset link to the attacker's address → one-request ATO with no victim interaction. Critical 10.0, $35,000 bounty verified on the report page.",
-    "slug": "finding-gitlab-h1-2293343"
+    "slug": "finding-gitlab-h1-2293343",
+    "added": ""
   },
   {
     "title": "PHP filter chains",
@@ -344,7 +360,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/20-php-filter-chain",
     "summary": "Chained php://filter iconv conversions forge executable PHP from a read-only include sink — LFI to RCE with no upload, no log poisoning, no writable file.",
-    "slug": "lab-20-php-filter-chain"
+    "slug": "lab-20-php-filter-chain",
+    "added": ""
   },
   {
     "title": "Practical Client Side Path Traversal Attacks",
@@ -366,7 +383,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/13-cspt-stylesheet-injection",
     "summary": "CSPT via stylesheet loader — open redirect to CSS injection. HackerOne #1245165 (Acronis); nominated for PortSwigger Top 10 Web Hacking Techniques 2022.",
-    "slug": "lab-13-cspt-stylesheet-injection"
+    "slug": "lab-13-cspt-stylesheet-injection",
+    "added": ""
   },
   {
     "title": "Apache 2.4.49 path traversal",
@@ -384,7 +402,8 @@
     "status": "candidate",
     "lab_url": "",
     "summary": "$4,000 Internet Bug Bounty (on the report page): decode-ordering bug in 2.4.49 path normalization turned encoded dot segments into active ../ — file read outside aliased directories, exploited in the wild. Fix bypassed by double-encoding (CVE-2021-42013).",
-    "slug": "finding-apache-cve-2021-41773"
+    "slug": "finding-apache-cve-2021-41773",
+    "added": ""
   },
   {
     "title": "GitLab X-HTTP-Method-Override cache poisoning",
@@ -403,7 +422,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/04-method-override",
     "summary": "Method-override header turns a cacheable GET into an error response that gets cached — cache-poisoned denial of service. $2,500.",
-    "slug": "lab-04-method-override"
+    "slug": "lab-04-method-override",
+    "added": ""
   },
   {
     "title": "H1 #1250037: Stripe IDOR email change → ATO",
@@ -424,7 +444,8 @@
     "status": "candidate",
     "lab_url": "",
     "summary": "Account-update endpoint not bound to session identity → attacker changed another user's email, then reset the password → full ATO. Critical, $3,000 bounty verified on the report page.",
-    "slug": "finding-stripe-h1-1250037"
+    "slug": "finding-stripe-h1-1250037",
+    "added": ""
   },
   {
     "title": "HTTP/2: The Sequel is Always Worse",
@@ -445,7 +466,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/09-h2-downgrade-desync",
     "summary": "H2.CL downgrade desync — HTTP/2 frontend and HTTP/1 backend disagree on where a request ends, enabling request smuggling.",
-    "slug": "lab-09-h2-downgrade-desync"
+    "slug": "lab-09-h2-downgrade-desync",
+    "added": ""
   },
   {
     "title": "H2C Smuggling",
@@ -467,7 +489,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/06-h2c-smuggling",
     "summary": "Smuggling HTTP/2 cleartext inside an HTTP/1.1 Upgrade request — tunneling past front-end protections to reach /admin. Top web hacking technique of 2020.",
-    "slug": "lab-06-h2c-smuggling"
+    "slug": "lab-06-h2c-smuggling",
+    "added": ""
   },
   {
     "title": "Shopify X-Forwarded-Host cache poisoning",
@@ -485,7 +508,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/03-unkeyed-input-xfh",
     "summary": "Unkeyed X-Forwarded-Host header poisons cached JS assets — defacement and phishing on apps.shopify.com. Bounty raised from $1,300 to $6,300.",
-    "slug": "lab-03-unkeyed-input-xfh"
+    "slug": "lab-03-unkeyed-input-xfh",
+    "added": ""
   },
   {
     "title": "Abusing HTTP hop-by-hop request headers",
@@ -504,7 +528,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/01-hop-by-hop-xff-bypass",
     "summary": "Connection header tricks proxies into stripping security headers (X-Forwarded-For, Authorization) before the backend — enabling admin bypass and IP spoofing.",
-    "slug": "lab-01-hop-by-hop-xff-bypass"
+    "slug": "lab-01-hop-by-hop-xff-bypass",
+    "added": ""
   },
   {
     "title": "Cache Poisoned Denial of Service (CPDoS)",
@@ -523,7 +548,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/05-cpdos-error-caching",
     "summary": "Caching error responses (e.g. 403s) triggered by attacker-controlled headers — denial of service for every user behind the cache.",
-    "slug": "lab-05-cpdos-error-caching"
+    "slug": "lab-05-cpdos-error-caching",
+    "added": ""
   },
   {
     "title": "H1 #683298: MoPub login open redirect → XSS via javascript: URI",
@@ -543,7 +569,8 @@
     "status": "candidate",
     "lab_url": "",
     "summary": "app.mopub.com/login?next= accepted arbitrary destinations including the javascript: scheme → post-login reflected XSS in the victim's session. Bounty paid (amount not shown on the report page).",
-    "slug": "finding-mopub-h1-683298"
+    "slug": "finding-mopub-h1-683298",
+    "added": ""
   },
   {
     "title": "PayPal CL.TE desync to stored XSS",
@@ -565,7 +592,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/08-paypal-clte-cache-poison",
     "summary": "CL.TE request smuggling poisons the cache with attacker content — stored XSS on /signin. $18,900.",
-    "slug": "lab-08-paypal-clte-cache-poison"
+    "slug": "lab-08-paypal-clte-cache-poison",
+    "added": ""
   },
   {
     "title": "H1 #391217: Valve partner CD keys IDOR",
@@ -585,7 +613,8 @@
     "status": "candidate",
     "lab_url": "",
     "summary": "/partnercdkeys/assignkeys/ performed no object-level authorization → any partner could pull all CD keys of any game. Critical, $20,000 bounty ($15k + bonus) verified on the report page.",
-    "slug": "finding-valve-h1-391217"
+    "slug": "finding-valve-h1-391217",
+    "added": ""
   },
   {
     "title": "H1 #415081: PayPal IDOR → cross-merchant privilege escalation",
@@ -605,7 +634,8 @@
     "status": "candidate",
     "lab_url": "",
     "summary": ".../businessmanage/users/api/v1/users let the caller add secondary users to other merchants' business accounts — no ownership check on the target account ID. High 7.1, $10,500 bounty verified on the report page.",
-    "slug": "finding-paypal-h1-415081"
+    "slug": "finding-paypal-h1-415081",
+    "added": ""
   },
   {
     "title": "Zip Slip",
@@ -626,7 +656,8 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/19-zip-slip",
     "summary": "Archive entry names (e.g. ../../pwned.txt) written outside the extraction target — arbitrary file write via crafted archives. Concrete instance: CVE-2018-1002203 in unzipper <0.8.13.",
-    "slug": "lab-19-zip-slip"
+    "slug": "lab-19-zip-slip",
+    "added": ""
   },
   {
     "title": "Web Cache Deception Attack",
@@ -646,6 +677,7 @@
     "status": "shipped",
     "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/02-web-cache-deception",
     "summary": "Path confusion tricks caches into storing private pages under public URLs — leaking account data. PayPal paid $3,000.",
-    "slug": "lab-02-web-cache-deception"
+    "slug": "lab-02-web-cache-deception",
+    "added": ""
   }
 ]
