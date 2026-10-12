@@ -43,28 +43,6 @@
     "added": ""
   },
   {
-    "title": "CVE-2026-87902: WordPress file inclusion",
-    "researcher": "Robert Ressl",
-    "year": 2026,
-    "url": "https://ressl.ch/blog/cve-2026-87902-wordpress/",
-    "topics": [
-      "File Inclusion"
-    ],
-    "techniques": [
-      "File Inclusion",
-      "Path Traversal"
-    ],
-    "related": [
-      "finding-apache-cve-2021-41773: both are traversal, but Apache is a decode-ordering bug in normalization while WordPress is a missing containment check"
-    ],
-    "type": "finding",
-    "status": "candidate",
-    "lab_url": "",
-    "summary": "Unauthenticated LFI in WordPress get_page_template() via double-encoded pagename — realpath() canonicalizes but never proves containment in the theme directory. Conditional RCE via pearcmd.php.",
-    "slug": "finding-wordpress-cve-2026-87902",
-    "added": ""
-  },
-  {
     "title": "form-data CRLF injection",
     "researcher": "GHSA-hmw2-7cc7-3qxx (CVE-2026-12143)",
     "year": 2026,
@@ -138,7 +116,6 @@
       "Path Traversal"
     ],
     "related": [
-      "finding-wordpress-cve-2026-87902: research record for this CVE — this lab reproduces it hands-on",
       "lab-20-php-filter-chain: same family — file inclusion; lab 20 forges code via filter chains (RCE), lab 21 reads files via traversal (containment failure)"
     ],
     "type": "lab",
@@ -673,7 +650,7 @@
       "Zip Slip"
     ],
     "related": [
-      "finding-wordpress-cve-2026-87902: same root-cause class — canonicalization without containment; read vs write primitive"
+      "lab-21-wp-file-inclusion: same root-cause class — canonicalization without containment; read vs write primitive"
     ],
     "type": "lab",
     "status": "shipped",
