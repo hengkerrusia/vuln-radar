@@ -82,6 +82,7 @@ def load_records():
         fm.setdefault("lab_url", "")
         fm.setdefault("researcher", "")
         fm.setdefault("summary", "")
+        fm.setdefault("added", "")  # YYYY-MM-DD when added to the index; "" = unknown
         fm.setdefault("techniques", [])
         fm.setdefault("related", [])
         records.append(fm)
@@ -115,6 +116,7 @@ PAGE_HEAD = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} — {site}</title>
 <link rel="stylesheet" href="{css_path}style.css">
+<link rel="alternate" type="application/rss+xml" title="VulnRadar" href="feed.xml">
 </head>
 <body>
 <header class="site-header">
@@ -126,6 +128,16 @@ PAGE_HEAD = """<!DOCTYPE html>
 </header>
 <main class="wrap">
 """
+
+
+def status_class(r):
+    if r["type"] == "lab":
+        return "lab"
+    if r["status"] == "candidate":
+        return "candidate"
+    if r["status"] == "in-progress":
+        return "wip"
+    return ""
 
 
 def render_card(r):
@@ -144,13 +156,40 @@ def render_card(r):
         links.append(f'<a href="{esc(r["lab_url"])}" target="_blank" rel="noopener">🧪 Try the lab ↗</a>')
     researcher = f" — {esc(r['researcher'])}" if r["researcher"] else ""
     summary = f"<p>{esc(r['summary'])}</p>" if r["summary"] else ""
-    return f"""<article class="card">
+    return f"""<article class="card {status_class(r)}">
   <h3>{esc(r["title"])}{badge}</h3>
   <div class="meta">{r["year"]}{researcher}</div>
   <div class="topics">{topics}</div>
   {summary}
   <div class="links">{" · ".join(links)}</div>
 </article>"""
+
+
+def build_chart(ycounts):
+    """SVG bar chart. Bars are in-place year filters (handled by app.js)."""
+    maxc = max(ycounts.values())
+    bw, gap, hmax = 64, 10, 120
+    bars = []
+    x = 0
+    for y, c in ycounts.items():
+        h = max(4, round(c / maxc * hmax))
+        ypos = hmax - h
+        bars.append(
+            f'<g class="bar" data-year="{y}" tabindex="0" role="button" '
+            f'aria-label="{y}: {c} records, activate to filter">'
+            f'<title>{y} — {c} records — click to filter</title>'
+            f'<rect x="{x}" y="{ypos}" width="{bw}" height="{h}"/>'
+            f'<text x="{x + bw/2}" y="{hmax + 16}" text-anchor="middle">{y}</text>'
+            f'<text x="{x + bw/2}" y="{ypos - 6}" text-anchor="middle" class="count">{c}</text>'
+            f"</g>"
+        )
+        x += bw + gap
+    width = x - gap
+    return (
+        f'<div class="chartwrap"><svg class="chart" viewBox="0 -24 {width} {hmax + 44}" '
+        f'style="max-width:{width}px" role="img" aria-label="records per year">'
+        + "".join(bars) + "</svg></div>"
+    )
 
 
 def build_dashboard(records):
@@ -171,28 +210,8 @@ def build_dashboard(records):
         f'<button class="filter" data-topic="{esc(t)}">{esc(t)} <i>{c}</i></button>'
         for t, c in tcounts.items()
     ]
-    # SVG bar chart: records per year
-    maxc = max(ycounts.values())
-    bw, gap, hmax = 44, 10, 120
-    bars = []
-    x = 0
-    for y, c in ycounts.items():
-        h = max(4, round(c / maxc * hmax))
-        ypos = hmax - h
-        bars.append(
-            f'<a href="{y}.html"><g class="bar" data-year="{y}">'
-            f'<rect x="{x}" y="{ypos}" width="{bw}" height="{h}"/>'
-            f'<text x="{x + bw/2}" y="{hmax + 16}" text-anchor="middle">{y}</text>'
-            f'<text x="{x + bw/2}" y="{ypos - 6}" text-anchor="middle" class="count">{c}</text>'
-            f"</g></a>"
-        )
-        x += bw + gap
-    width = x
-    chart = (
-        f'<svg class="chart" viewBox="0 -24 {width} {hmax + 44}" '
-        f'style="max-width:{width}px" role="img" aria-label="records per year">'
-        + "".join(bars) + "</svg>"
-    )
+    # SVG bar chart: records per year (in-place filter, see app.js)
+    chart = build_chart(ycounts)
     return (
         PAGE_HEAD.format(title="Signals", site=SITE_NAME, tagline=TAGLINE,
                          css_path="", home="index.html", archive="archive.html")
@@ -203,11 +222,24 @@ def build_dashboard(records):
         + "<h2>Records per year</h2>" + chart
         + "<h2>Topics</h2><div class=\"filters\">" + "".join(filters) + "</div>"
         + '<input id="q" type="search" placeholder="Filter: title, researcher, topic…  (try tag:smuggling)">'
+        + '<div class="toolbar">'
+        + '<span id="count" aria-live="polite"></span>'
+        + '<label class="sortwrap">Sort <select id="sort" aria-label="sort records">'
+        + '<option value="newest">Newest</option>'
+        + '<option value="oldest">Oldest</option>'
+        + '<option value="az">A–Z</option>'
+        + "</select></label>"
+        + '<button id="exp-json" class="toolbtn" title="Download the current view as JSON">JSON ↓</button>'
+        + '<button id="exp-csv" class="toolbtn" title="Download the current view as CSV">CSV ↓</button>'
+        + '<a class="toolbtn link" href="feed.xml" title="RSS feed of records">RSS</a>'
+        + "</div>"
+        + '<div id="activefilters"></div>'
         + '<div id="cards"></div>'
         + '<script>const TOPICS = ' + topics_json + ';</script>\n'
         + '<script src="app.js"></script>\n</main>\n'
         + '<footer class="wrap"><p>Curated research index. Every entry links to the original publication. '
-        + 'Labs live at <a href="' + LAB_REPO + '">fixthecode</a>.</p></footer>\n</body>\n</html>\n'
+        + 'Labs live at <a href="' + LAB_REPO + '">fixthecode</a>. '
+        + '<a href="feed.xml">RSS feed</a>.</p></footer>\n</body>\n</html>\n'
     )
 
 
@@ -259,6 +291,87 @@ def parse_related(records):
     return edges
 
 
+SERIES = [
+    ("Labs 1–5 · cache & hop-by-hop", [1, 2, 3, 4, 5]),
+    ("Labs 6–10 · request smuggling / desync", [6, 7, 8, 9, 10]),
+    ("Labs 11–14 · CSPT", [11, 12, 13, 14]),
+    ("Labs 15–18 · CRLF", [15, 16, 17, 18]),
+    ("Labs 19–20 · file inclusion / path traversal", [19, 20]),
+]
+
+
+def build_board_list(records):
+    """Static list fallback for the board — shown on small screens via CSS."""
+    by_slug = {r["slug"]: r for r in records}
+    groups = []
+    for caption, nums in SERIES:
+        items = []
+        for num in nums:
+            r = next((r for r in records if lab_number(r["slug"]) == num), None)
+            if not r:
+                continue
+            techs = ", ".join(esc(t) for t in r.get("techniques", []))
+            items.append(
+                f'<li><a href="{esc(r["url"])}" target="_blank" rel="noopener">'
+                f'Lab {num} — {esc(r["title"])}</a>'
+                + (f' <span class="bl-tech">{techs}</span>' if techs else "")
+                + "</li>"
+            )
+        groups.append(f"<h3>{esc(caption)}</h3><ul>{''.join(items)}</ul>")
+    cands = [r for r in records if r["type"] == "finding"]
+    if cands:
+        items = []
+        for r in cands:
+            techs = ", ".join(esc(t) for t in r.get("techniques", []))
+            items.append(
+                f'<li><a href="{esc(r["url"])}" target="_blank" rel="noopener">'
+                f'{esc(r["title"])}</a>'
+                + (f' <span class="bl-tech">{techs}</span>' if techs else "")
+                + "</li>"
+            )
+        groups.append("<h3>Candidates · not yet labs</h3><ul>" + "".join(items) + "</ul>")
+    return '<div class="boardlist"><h2>Records by series</h2>' + "".join(groups) + "</div>"
+
+
+def build_feed(records):
+    """RSS 2.0 feed of records, newest first."""
+    from email.utils import format_datetime
+    from datetime import datetime, timezone, timedelta
+
+    WIB = timezone(timedelta(hours=7))
+
+    def pubdate(r):
+        try:
+            dt = datetime.strptime(r["added"], "%Y-%m-%d").replace(tzinfo=WIB)
+        except (ValueError, TypeError):
+            dt = datetime(r["year"], 1, 1, tzinfo=WIB)
+        return format_datetime(dt)
+
+    def sortkey(r):
+        return (r["added"] or f'{r["year"]:04d}-00-00', r["year"], r["title"])
+
+    items = []
+    for r in sorted(records, key=sortkey, reverse=True):
+        desc = esc(r["summary"]) if r["summary"] else esc(r["title"])
+        items.append(
+            f"<item><title>{esc(r['title'])}</title>"
+            f"<link>{esc(r['url'])}</link>"
+            f'<guid isPermaLink="false">{esc(r["slug"])}</guid>'
+            f"<pubDate>{pubdate(r)}</pubDate>"
+            f"<description>{desc}</description></item>"
+        )
+    return (
+        '<?xml version="1.0" encoding="utf-8"?>\n'
+        '<rss version="2.0"><channel>'
+        "<title>VulnRadar — web hacking research signals</title>"
+        "<link>https://hengkerrusia.github.io/vuln-radar/</link>"
+        f"<description>{esc(TAGLINE)}</description>"
+        "<language>en</language>"
+        + "".join(items)
+        + "</channel></rss>\n"
+    )
+
+
 def build_board(records):
     tcounts = {}
     for r in records:
@@ -275,16 +388,9 @@ def build_board(records):
             x = PAD + i * ((W - 2 * PAD) / (n - 1)) if n > 1 else W / 2
             tech_pos[t] = (round(x, 1), y)
 
-    series = [
-        ("Labs 1\u20135 \u00b7 cache & hop-by-hop", [1, 2, 3, 4, 5]),
-        ("Labs 6\u201310 \u00b7 request smuggling / desync", [6, 7, 8, 9, 10]),
-        ("Labs 11\u201314 \u00b7 CSPT", [11, 12, 13, 14]),
-        ("Labs 15\u201318 \u00b7 CRLF", [15, 16, 17, 18]),
-        ("Labs 19\u201320 \u00b7 file inclusion / path traversal", [19, 20]),
-    ]
     node_pos, captions = {}, []
     y = 300
-    for caption, nums in series:
+    for caption, nums in SERIES:
         captions.append((caption, y - 52))
         n = len(nums)
         for i, num in enumerate(nums):
@@ -330,7 +436,8 @@ def build_board(records):
     # technique pins
     for t, (x, y) in tech_pos.items():
         parts.append(
-            f'<g class="technode" data-tech="{esc(t)}">'
+            f'<g class="technode" data-tech="{esc(t)}" tabindex="0" role="button" '
+            f'aria-label="technique {esc(t)}, {tcounts[t]} uses">'
             f'<circle class="pin" cx="{x}" cy="{y}" r="8"/>'
             f'<text class="techlabel" x="{x}" y="{y + 24}" text-anchor="middle">{esc(t)}</text>'
             f'<text class="techcount" x="{x}" y="{y + 38}" text-anchor="middle">{tcounts[t]} uses</text>'
@@ -346,7 +453,8 @@ def build_board(records):
         else:
             rect_class, node_label = "labrect candidate", "\u25cb candidate"
         parts.append(
-            f'<g class="labnode" data-lab="{r["slug"]}">'
+            f'<g class="labnode" data-lab="{r["slug"]}" tabindex="0" role="button" '
+            f'aria-label="{esc(node_label)}: {esc(r["title"])}">'
             f'<rect class="{rect_class}" x="{x - 88}" y="{y - 30}" width="176" height="60" rx="10"/>'
             f'<text class="labnum" x="{x}" y="{y - 6}" text-anchor="middle">{esc(node_label)}</text>'
             f'<text class="labtitle" x="{x}" y="{y + 14}" text-anchor="middle">{esc(short)}</text>'
@@ -399,6 +507,7 @@ def build_board(records):
         + "</div>"
         + '<div class="boardwrap">' + svg
         + '<aside id="panel" hidden></aside></div>'
+        + build_board_list(records)
         + "<script>const BOARD_DATA = " + json.dumps(data, ensure_ascii=False) + ";</script>\n"
         + "<script>const BOARD_TECH = " + json.dumps(tech_labs, ensure_ascii=False) + ";</script>\n"
         + '<script src="board.js"></script>\n</main>\n'
@@ -416,6 +525,7 @@ def main():
     (OUT_DIR / "index.html").write_text(build_dashboard(records), encoding="utf-8")
     (OUT_DIR / "board.html").write_text(build_board(records), encoding="utf-8")
     (OUT_DIR / "archive.html").write_text(build_archive_index(records), encoding="utf-8")
+    (OUT_DIR / "feed.xml").write_text(build_feed(records), encoding="utf-8")
     by_year = {}
     for r in records:
         by_year.setdefault(r["year"], []).append(r)
