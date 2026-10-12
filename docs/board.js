@@ -89,18 +89,9 @@
   function openAt(target) {
     var lab = target.closest(".labnode");
     var tech = target.closest(".technode");
-    if (lab) {
-      var slug = lab.getAttribute("data-lab");
-      highlight("lab", slug);
-      labPanel(slug);
-    } else if (tech) {
-      var name = tech.getAttribute("data-tech");
-      highlight("tech", name);
-      techPanel(name);
-    } else {
-      clearHl();
-      panel.hidden = true;
-    }
+    if (lab) showLab(lab.getAttribute("data-lab"));
+    else if (tech) showTech(tech.getAttribute("data-tech"));
+    else hidePanel();
   }
 
   // keyboard: Enter/Space on a focused node opens it, same as click
@@ -113,18 +104,41 @@
     openAt(t);
   });
 
+  // hover previews details in the panel (same as click); moving onto the
+  // panel itself must not dismiss it — only leaving the whole board area does
+  var lastOpened = null; // "lab:<slug>" | "tech:<name>" | null
+
+  function showLab(slug) {
+    highlight("lab", slug);
+    var key = "lab:" + slug;
+    if (lastOpened !== key || panel.hidden) { labPanel(slug); lastOpened = key; }
+  }
+
+  function showTech(name) {
+    highlight("tech", name);
+    var key = "tech:" + name;
+    if (lastOpened !== key || panel.hidden) { techPanel(name); lastOpened = key; }
+  }
+
+  function hidePanel() {
+    clearHl();
+    panel.hidden = true;
+    lastOpened = null;
+  }
+
   svg.addEventListener("mouseover", function (ev) {
     var lab = ev.target.closest(".labnode");
     var tech = ev.target.closest(".technode");
-    if (lab) highlight("lab", lab.getAttribute("data-lab"));
-    else if (tech) highlight("tech", tech.getAttribute("data-tech"));
+    if (lab) showLab(lab.getAttribute("data-lab"));
+    else if (tech) showTech(tech.getAttribute("data-tech"));
   });
-  svg.addEventListener("mouseleave", clearHl);
+  var boardWrap = svg.closest(".boardwrap");
+  if (boardWrap) boardWrap.addEventListener("mouseleave", hidePanel);
+  else svg.addEventListener("mouseleave", clearHl);
 
   panel.addEventListener("click", function (ev) {
     if (ev.target.classList.contains("x")) {
-      panel.hidden = true;
-      clearHl();
+      hidePanel();
       return;
     }
     var go = ev.target.closest("[data-goto]");
