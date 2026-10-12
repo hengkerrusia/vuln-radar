@@ -16,7 +16,7 @@
   </div>
 </header>
 <main class="wrap">
-<h1>2026</h1><p class="lede">6 records.</p><article class="card lab">
+<h1>2026</h1><p class="lede">7 records.</p><article class="card lab">
   <h3>CRLF-Powered Desync Attacks<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2026 — PortSwigger Research</div>
   <div class="topics"><span class="topic">CRLF Injection</span></div>
@@ -57,6 +57,13 @@
   <div class="topics"><span class="topic">CRLF Injection</span></div>
   <p>CRLF in a Basic-auth username passes through to the morgan logger — log forging via unsanitized log sink.</p>
   <div class="links"><a href="https://github.com/advisories/GHSA-4vj7-5mj6-jm8m" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/18-morgan-log-forging" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
+</article>
+<article class="card lab">
+  <h3>WordPress file inclusion (CVE-2026-87902)<span class="badge lab">🧪 lab</span></h3>
+  <div class="meta">2026 — Robert Ressl</div>
+  <div class="topics"><span class="topic">File Inclusion</span></div>
+  <p>Double-encoded pagename + numeric page_id make get_page_template() include a local PHP file outside the theme directory — realpath() canonicalizes but never proves containment. Conditional RCE via pearcmd.php.</p>
+  <div class="links"><a href="https://ressl.ch/blog/cve-2026-87902-wordpress/" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/21-wp-file-inclusion" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 </main>
 </body>
