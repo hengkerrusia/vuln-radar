@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2026 — VulnRadar</title>
 <link rel="stylesheet" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="VulnRadar" href="feed.xml">
 </head>
 <body>
 <header class="site-header">
@@ -15,42 +16,42 @@
   </div>
 </header>
 <main class="wrap">
-<h1>2026</h1><p class="lede">6 records.</p><article class="card">
+<h1>2026</h1><p class="lede">6 records.</p><article class="card lab">
   <h3>CRLF-Powered Desync Attacks<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2026 — PortSwigger Research</div>
   <div class="topics"><span class="topic">CRLF Injection</span></div>
   <p>CRLF injection that splits a request at a proxy — desync leading to response queue poisoning.</p>
   <div class="links"><a href="https://portswigger.net/research/crlf-powered-desync-attacks" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/16-crlf-desync" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
-<article class="card">
+<article class="card candidate">
   <h3>CVE-2026-38529: Krayin CRM BOLA → password reset → ATO<span class="badge candidate">candidate</span></h3>
   <div class="meta">2026</div>
   <div class="topics"><span class="topic">IDOR</span></div>
   <p>BOLA in Krayin CRM v2.2.x Settings/UserController.php allows arbitrary password reset → full ATO. CVSS 8.8 High, CWE-269 + CWE-639. PoC and exact fix commit not yet verified — verify before building a lab.</p>
   <div class="links"><a href="https://cve.report/CVE-2026-38529.pdf" target="_blank" rel="noopener">Read the original ↗</a></div>
 </article>
-<article class="card">
+<article class="card candidate">
   <h3>CVE-2026-87902: WordPress file inclusion<span class="badge candidate">candidate</span></h3>
   <div class="meta">2026 — Robert Ressl</div>
   <div class="topics"><span class="topic">File Inclusion</span></div>
   <p>Unauthenticated LFI in WordPress get_page_template() via double-encoded pagename — realpath() canonicalizes but never proves containment in the theme directory. Conditional RCE via pearcmd.php.</p>
   <div class="links"><a href="https://ressl.ch/blog/cve-2026-87902-wordpress/" target="_blank" rel="noopener">Read the original ↗</a></div>
 </article>
-<article class="card">
+<article class="card lab">
   <h3>form-data CRLF injection<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2026 — GHSA-hmw2-7cc7-3qxx (CVE-2026-12143)</div>
   <div class="topics"><span class="topic">CRLF Injection</span></div>
   <p>CRLF smuggled in a multipart filename becomes a real parsed header part — header injection via form-data.</p>
   <div class="links"><a href="https://github.com/advisories/GHSA-hmw2-7cc7-3qxx" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/17-formdata-crlf" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
-<article class="card">
+<article class="card candidate">
   <h3>H1 #3723458: Khan Academy regex bypass → 1-click ATO<span class="badge candidate">candidate</span></h3>
   <div class="meta">2026</div>
   <div class="topics"><span class="topic">Open Redirect</span></div>
   <p>KA_DOMAIN_REGEX left dots in uc.a.run.app unescaped, so attacker-registered xfarr-6fmjyrz2lq-uc-a-run.app passed validation; ?continue= login flow delivered a one-time transfer auth token to the attacker server → replay → full session cookies → 1-click ATO. Report frames it as a critical/P0 chain.</p>
   <div class="links"><a href="https://hackerone.com/reports/3723458" target="_blank" rel="noopener">Read the original ↗</a></div>
 </article>
-<article class="card">
+<article class="card lab">
   <h3>morgan log forging<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2026 — GHSA-4vj7-5mj6-jm8m (CVE-2026-5078)</div>
   <div class="topics"><span class="topic">CRLF Injection</span></div>
