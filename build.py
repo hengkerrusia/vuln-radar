@@ -296,7 +296,7 @@ SERIES = [
     ("Labs 6–10 · request smuggling / desync", [6, 7, 8, 9, 10]),
     ("Labs 11–14 · CSPT", [11, 12, 13, 14]),
     ("Labs 15–18 · CRLF", [15, 16, 17, 18]),
-    ("Labs 19–20 · file inclusion / path traversal", [19, 20]),
+    ("Labs 19–21 · file inclusion / path traversal", [19, 20, 21]),
 ]
 
 
@@ -496,7 +496,7 @@ def build_board(records):
         + "<h1>Investigation Board</h1>"
         + '<p class="lede">Every string is a claim: red strings tie a lab or candidate '
         + "to the techniques it uses, amber strings tie records that evolve or chain into each other "
-        + "(hover for why). Click any node for details.</p>"
+        + "(hover for why). Hover or click any node for details.</p>"
         + '<div class="legend"><span><i class="sw red"></i>uses technique</span>'
         + '<span><i class="sw amber"></i>related lab</span></div>'
         + '<div class="boardtools">'
