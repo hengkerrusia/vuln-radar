@@ -5,7 +5,7 @@ year: 2018
 url: "https://security.snyk.io/research/zip-slip-vulnerability"
 topics: ["Path Traversal"]
 techniques: ["Path Traversal", "Zip Slip"]
-related: ["finding-wordpress-cve-2026-87902: same root-cause class — canonicalization without containment; read vs write primitive"]
+related: ["lab-21-wp-file-inclusion: same root-cause class — canonicalization without containment; read vs write primitive"]
 type: "lab"
 status: "shipped"
 lab_url: "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/19-zip-slip"
