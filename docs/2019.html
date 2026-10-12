@@ -16,7 +16,7 @@
   </div>
 </header>
 <main class="wrap">
-<h1>2019</h1><p class="lede">4 records.</p><article class="card lab">
+<h1>2019</h1><p class="lede">5 records.</p><article class="card lab">
   <h3>Abusing HTTP hop-by-hop request headers<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2019 — Nathan Davison</div>
   <div class="topics"><span class="topic">Hop-by-Hop Abuse</span></div>
@@ -29,6 +29,13 @@
   <div class="topics"><span class="topic">Cache Poisoning</span></div>
   <p>Caching error responses (e.g. 403s) triggered by attacker-controlled headers — denial of service for every user behind the cache.</p>
   <div class="links"><a href="https://cpdos.org/" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/05-cpdos-error-caching" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
+</article>
+<article class="card lab">
+  <h3>GitLab Maven registry traversal to authorized_keys write (HackerOne #733072)<span class="badge lab">🧪 lab</span></h3>
+  <div class="meta">2019 — saltyyolk (HackerOne)</div>
+  <div class="topics"><span class="topic">Path Traversal</span></div>
+  <p>Disclosed H1 report ($1,000 bounty): the Grape router validated the pre-decoded URL, so %2e%2e%2f in the Maven file_name segment passed the no-slash regex — a PUT then wrote the attacker&#x27;s SSH key over authorized_keys. Traversal on a write sink beats traversal on a read sink.</p>
+  <div class="links"><a href="https://hackerone.com/reports/733072" target="_blank" rel="noopener">Read the original ↗</a></div>
 </article>
 <article class="card candidate">
   <h3>H1 #683298: MoPub login open redirect → XSS via javascript: URI<span class="badge candidate">candidate</span></h3>
