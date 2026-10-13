@@ -37,12 +37,12 @@
   <p>Disclosed H1 report ($1,000 bounty): the Grape router validated the pre-decoded URL, so %2e%2e%2f in the Maven file_name segment passed the no-slash regex — a PUT then wrote the attacker&#x27;s SSH key over authorized_keys. Traversal on a write sink beats traversal on a read sink.</p>
   <div class="links"><a href="https://hackerone.com/reports/733072" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/23-gitlab-maven-traversal" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
-<article class="card candidate">
-  <h3>H1 #683298: MoPub login open redirect → XSS via javascript: URI<span class="badge candidate">candidate</span></h3>
+<article class="card lab">
+  <h3>MoPub login open redirect → XSS via javascript: URI (H1 #683298)<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2019 — jackb898</div>
   <div class="topics"><span class="topic">Open Redirect</span></div>
-  <p>app.mopub.com/login?next= accepted arbitrary destinations including the javascript: scheme → post-login reflected XSS in the victim&#x27;s session. Bounty paid (amount not shown on the report page).</p>
-  <div class="links"><a href="https://hackerone.com/reports/683298" target="_blank" rel="noopener">Read the original ↗</a></div>
+  <p>app.mopub.com/login?next= accepted arbitrary destinations including the javascript: scheme; post-login navigation used window.location.href, so the javascript: URI executed as reflected XSS in the victim&#x27;s session. Bounty paid (amount not shown on the report page). Lab is the first client-side build, verified with a headless-Chromium sidecar that proves JS execution. Fix: allowlist next to relative paths, reject schemes with 400.</p>
+  <div class="links"><a href="https://hackerone.com/reports/683298" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/25-mopub-openredirect-xss" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 <article class="card lab">
   <h3>PayPal CL.TE desync to stored XSS<span class="badge lab">🧪 lab</span></h3>
