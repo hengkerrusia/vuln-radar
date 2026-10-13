@@ -37,12 +37,12 @@
   <p>CRLF smuggled in a multipart filename becomes a real parsed header part — header injection via form-data.</p>
   <div class="links"><a href="https://github.com/advisories/GHSA-hmw2-7cc7-3qxx" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/17-formdata-crlf" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
-<article class="card candidate">
-  <h3>H1 #3723458: Khan Academy regex bypass → 1-click ATO<span class="badge candidate">candidate</span></h3>
-  <div class="meta">2026</div>
+<article class="card lab">
+  <h3>Khan Academy regex bypass → 1-click ATO (H1 #3723458)<span class="badge lab">🧪 lab</span></h3>
+  <div class="meta">2026 — HackerOne report #3723458</div>
   <div class="topics"><span class="topic">Open Redirect</span></div>
-  <p>KA_DOMAIN_REGEX left dots in uc.a.run.app unescaped, so attacker-registered xfarr-6fmjyrz2lq-uc-a-run.app passed validation; ?continue= login flow delivered a one-time transfer auth token to the attacker server → replay → full session cookies → 1-click ATO. Report frames it as a critical/P0 chain.</p>
-  <div class="links"><a href="https://hackerone.com/reports/3723458" target="_blank" rel="noopener">Read the original ↗</a></div>
+  <p>Login continue validated by KA_DOMAIN_REGEX with unescaped dots in uc.a.run.app — attacker-registered xfarr-6fmjyrz2lq-uc-a-run.app passed, so post-login redirect carried a one-time transfer auth token (/transfer_auth?key=) to the attacker; replayed for full session cookies → 1-click ATO. Lab: mock login + transfer_auth; fix = escape the dots.</p>
+  <div class="links"><a href="https://hackerone.com/reports/3723458" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/27-khan-academy-regex-bypass" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 <article class="card lab">
   <h3>morgan log forging<span class="badge lab">🧪 lab</span></h3>
