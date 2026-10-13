@@ -23,12 +23,12 @@
   <p>CVE-2023-3452 (CVSS 9.8): unauthenticated wp_abspath parameter passed into require_once() — data:// wrapper gives single-request RCE when allow_url_include=On. RFI is nearly extinct in modern apps; the misconfiguration is the teaching point.</p>
   <div class="links"><a href="https://www.wordfence.com/threat-intel/vulnerabilities/id/a76077c6-700a-4d21-a930-b0d6455d959c" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/22-canto-rfi" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
-<article class="card candidate">
-  <h3>CVE-2023-28131: Expo OAuth proxy open redirect → ATO<span class="badge candidate">candidate</span></h3>
+<article class="card lab">
+  <h3>CVE-2023-28131: Expo OAuth proxy open redirect → ATO<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2023 — Salt Labs (Salt Security)</div>
   <div class="topics"><span class="topic">Open Redirect</span></div>
-  <p>AuthSession proxy (auth.expo.io) stored attacker-influenced returnUrl in a cookie, then redirected the OAuth fragment (code+token) to it — bypassable with mixed-case hTTps://. Full ATO demonstrated on Codecademy. CVSS 9.6, hotfixed within hours.</p>
-  <div class="links"><a href="https://salt.security/blog/a-new-oauth-vulnerability-that-may-impact-hundreds-of-online-services" target="_blank" rel="noopener">Read the original ↗</a></div>
+  <p>AuthSession proxy (auth.expo.io) stored attacker-influenced returnUrl in an ru cookie, then redirected the OAuth fragment (code+token) to it — the case-sensitive scheme check was bypassed with mixed-case hTTps://. Full ATO demonstrated on Codecademy. CVSS 9.6, hotfixed within hours. Lab: mock OAuth proxy + IdP, no browser needed; fix = case-insensitive scheme + host allowlist (400).</p>
+  <div class="links"><a href="https://salt.security/blog/a-new-oauth-vulnerability-that-may-impact-hundreds-of-online-services" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/26-expo-oauth-openredirect" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 <article class="card candidate">
   <h3>H1 #2293343: GitLab password reset array pollution → ATO<span class="badge candidate">candidate</span></h3>
