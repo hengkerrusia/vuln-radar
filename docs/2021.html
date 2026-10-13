@@ -16,12 +16,12 @@
   </div>
 </header>
 <main class="wrap">
-<h1>2021</h1><p class="lede">4 records.</p><article class="card candidate">
-  <h3>Apache 2.4.49 path traversal<span class="badge candidate">candidate</span></h3>
-  <div class="meta">2021 — Ash Daulton (H1 #1394916)</div>
+<h1>2021</h1><p class="lede">4 records.</p><article class="card lab">
+  <h3>Apache 2.4.49 path traversal (CVE-2021-41773)<span class="badge lab">🧪 lab</span></h3>
+  <div class="meta">2021 — Ash Daulton (HackerOne #1394916)</div>
   <div class="topics"><span class="topic">Path Traversal</span></div>
-  <p>$4,000 Internet Bug Bounty (on the report page): decode-ordering bug in 2.4.49 path normalization turned encoded dot segments into active ../ — file read outside aliased directories, exploited in the wild. Fix bypassed by double-encoding (CVE-2021-42013).</p>
-  <div class="links"><a href="https://hackerone.com/reports/1394916" target="_blank" rel="noopener">Read the original ↗</a></div>
+  <p>Disclosed H1 report ($4,000 Internet Bug Bounty on the report page): 2.4.49 checked the path for ../ BEFORE decoding %2e to ., so /.%2e/ segments became live traversal after the check. With ScriptAlias /cgi-bin/ + mod_cgi, a GET reads files outside the web root (e.g. /etc/passwd). Fix is config hardening (Require all denied, per the official advisory); 2.4.50&#x27;s fix was incomplete (CVE-2021-42013), so the upgrade note says &gt;= 2.4.51.</p>
+  <div class="links"><a href="https://hackerone.com/reports/1394916" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/24-apache-249-traversal" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 <article class="card lab">
   <h3>GitLab X-HTTP-Method-Override cache poisoning<span class="badge lab">🧪 lab</span></h3>
