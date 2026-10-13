@@ -5,7 +5,7 @@ year: 2026
 url: "https://hackerone.com/reports/3723458"
 topics: ["Open Redirect"]
 techniques: ["Open Redirect"]
-related: ["finding-expo-oauth-cve-2023-28131: both are redirect-driven token theft → ATO; Khan bypasses an unescaped-dot regex, Expo bypasses a case-sensitive scheme check", "lab-25-mopub-openredirect-xss: both are open redirects with real impact; Khan steals an auth-transfer token, MoPub escalates to XSS via javascript: scheme"]
+related: ["lab-26-expo-oauth-openredirect: both are redirect-driven token theft → ATO; Khan bypasses an unescaped-dot regex, Expo bypasses a case-sensitive scheme check", "lab-25-mopub-openredirect-xss: both are open redirects with real impact; Khan steals an auth-transfer token, MoPub escalates to XSS via javascript: scheme"]
 type: "finding"
 status: "candidate"
 lab_url: ""
