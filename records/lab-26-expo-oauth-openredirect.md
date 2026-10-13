@@ -5,7 +5,7 @@ year: 2023
 url: "https://salt.security/blog/a-new-oauth-vulnerability-that-may-impact-hundreds-of-online-services"
 topics: ["Open Redirect"]
 techniques: ["Open Redirect"]
-related: ["finding-khan-academy-h1-3723458: both are redirect-driven token theft → ATO; Khan bypasses an unescaped-dot regex, Expo bypasses a case-sensitive scheme check"]
+related: ["lab-27-khan-academy-regex-bypass: both are redirect-driven token theft → ATO; Khan bypasses an unescaped-dot regex, Expo bypasses a case-sensitive scheme check"]
 type: "lab"
 status: "shipped"
 lab_url: "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/26-expo-oauth-openredirect"

@@ -5,7 +5,7 @@ year: 2019
 url: "https://hackerone.com/reports/683298"
 topics: ["Open Redirect"]
 techniques: ["Open Redirect", "XSS"]
-related: ["finding-khan-academy-h1-3723458: both are open redirects with real impact; MoPub escalates to XSS via javascript: scheme, Khan steals an auth-transfer token"]
+related: ["lab-27-khan-academy-regex-bypass: both are open redirects with real impact; MoPub escalates to XSS via javascript: scheme, Khan steals an auth-transfer token"]
 type: "lab"
 status: "shipped"
 lab_url: "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/25-mopub-openredirect-xss"
