@@ -30,12 +30,12 @@
   <p>AuthSession proxy (auth.expo.io) stored attacker-influenced returnUrl in an ru cookie, then redirected the OAuth fragment (code+token) to it — the case-sensitive scheme check was bypassed with mixed-case hTTps://. Full ATO demonstrated on Codecademy. CVSS 9.6, hotfixed within hours. Lab: mock OAuth proxy + IdP, no browser needed; fix = case-insensitive scheme + host allowlist (400).</p>
   <div class="links"><a href="https://salt.security/blog/a-new-oauth-vulnerability-that-may-impact-hundreds-of-online-services" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/26-expo-oauth-openredirect" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
-<article class="card candidate">
-  <h3>H1 #2293343: GitLab password reset array pollution → ATO<span class="badge candidate">candidate</span></h3>
+<article class="card lab">
+  <h3>GitLab password reset array pollution → ATO (H1 #2293343)<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2023 — asterion04</div>
-  <div class="topics"><span class="topic">IDOR</span></div>
-  <p>Array-polluting user[email] in the password-reset request redirected the reset link to the attacker&#x27;s address → one-request ATO with no victim interaction. Critical 10.0, $35,000 bounty verified on the report page.</p>
-  <div class="links"><a href="https://hackerone.com/reports/2293343" target="_blank" rel="noopener">Read the original ↗</a></div>
+  <div class="topics"><span class="topic">Parameter Pollution</span></div>
+  <p>user[email] sent as a JSON array where a string was expected → the mailer fanned the password-reset link out to every address in the array → one-request ATO with no victim interaction. Critical 10.0, $35,000. Lab: mock reset API + @attacker.lab-scoped mock inbox; exploit pollutes the array, takes the token from own inbox, resets and logs in as victim (TOKEN validated via /me oracle + old password must fail); fix = strict type check: email must be a string → 400 fail-closed.</p>
+  <div class="links"><a href="https://hackerone.com/reports/2293343" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/31-gitlab-reset-array-pollution" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 </main>
 </body>
