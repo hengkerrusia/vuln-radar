@@ -23,12 +23,12 @@
   <p>/partnercdkeys/assignkeys/ performed no object-level authorization → any partner could pull all CD keys of any game. Critical, $20,000 bounty ($15k + bonus) verified on the report page.</p>
   <div class="links"><a href="https://hackerone.com/reports/391217" target="_blank" rel="noopener">Read the original ↗</a></div>
 </article>
-<article class="card candidate">
-  <h3>H1 #415081: PayPal IDOR → cross-merchant privilege escalation<span class="badge candidate">candidate</span></h3>
+<article class="card lab">
+  <h3>PayPal IDOR → cross-merchant privilege escalation (H1 #415081)<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2018 — born2hack</div>
   <div class="topics"><span class="topic">IDOR</span></div>
-  <p>.../businessmanage/users/api/v1/users let the caller add secondary users to other merchants&#x27; business accounts — no ownership check on the target account ID. High 7.1, $10,500 bounty verified on the report page.</p>
-  <div class="links"><a href="https://hackerone.com/reports/415081" target="_blank" rel="noopener">Read the original ↗</a></div>
+  <p>POST /businessmanage/users/api/v1/users accepted account_id from the request body without checking that the caller is a member of that account — attacker@evil.com added themselves as admin to victim merchant acct_1002, proven by the (properly authorized) read endpoint listing them. High 7.1, $10,500 bounty. Lab: mock merchant API; fix = is_member(email, account_id) before any mutation (cross-merchant → 403).</p>
+  <div class="links"><a href="https://hackerone.com/reports/415081" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/28-paypal-idor-privesc" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 <article class="card lab">
   <h3>Zip Slip<span class="badge lab">🧪 lab</span></h3>
