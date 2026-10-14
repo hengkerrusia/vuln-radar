@@ -5,7 +5,7 @@ year: 2023
 url: "https://hackerone.com/reports/2293343"
 topics: ["IDOR"]
 techniques: ["IDOR"]
-related: ["finding-stripe-h1-1250037: both are IDOR → ATO via account identity flows; GitLab pollutes the reset recipient, Stripe changes the account email"]
+related: ["lab-30-stripe-email-idor-ato: both are IDOR → ATO via account identity flows; GitLab pollutes the reset recipient, Stripe changes the account email"]
 type: "finding"
 status: "candidate"
 lab_url: ""
