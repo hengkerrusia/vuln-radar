@@ -30,19 +30,19 @@
   <p>Method-override header turns a cacheable GET into an error response that gets cached — cache-poisoned denial of service. $2,500.</p>
   <div class="links"><a href="https://hackerone.com/reports/1160407" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/04-method-override" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
-<article class="card candidate">
-  <h3>H1 #1250037: Stripe IDOR email change → ATO<span class="badge candidate">candidate</span></h3>
-  <div class="meta">2021 — dk82hg</div>
-  <div class="topics"><span class="topic">IDOR</span></div>
-  <p>Account-update endpoint not bound to session identity → attacker changed another user&#x27;s email, then reset the password → full ATO. Critical, $3,000 bounty verified on the report page.</p>
-  <div class="links"><a href="https://hackerone.com/reports/1250037" target="_blank" rel="noopener">Read the original ↗</a></div>
-</article>
 <article class="card lab">
   <h3>HTTP/2: The Sequel is Always Worse<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2021 — James Kettle</div>
   <div class="topics"><span class="topic">Request Smuggling</span></div>
   <p>H2.CL downgrade desync — HTTP/2 frontend and HTTP/1 backend disagree on where a request ends, enabling request smuggling.</p>
   <div class="links"><a href="https://portswigger.net/research/http2" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/09-h2-downgrade-desync" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
+</article>
+<article class="card lab">
+  <h3>Stripe email change IDOR → ATO (H1 #1250037)<span class="badge lab">🧪 lab</span></h3>
+  <div class="meta">2021 — dk82hg</div>
+  <div class="topics"><span class="topic">IDOR</span></div>
+  <p>Email-change flow on indiehackers.com (Stripe) took user_id from the request without binding it to the session → attacker changed a victim&#x27;s account email to one they owned, then password-reset → ATO. Medium → critical. Lab: mock account API; exploit runs the full chain (change email → reset → login as victim, TOKEN validated via /me oracle + old credentials must fail); fix = user_id must equal session + password confirmation (403 fail-closed).</p>
+  <div class="links"><a href="https://hackerone.com/reports/1250037" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/30-stripe-email-idor-ato" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 </main>
 </body>
