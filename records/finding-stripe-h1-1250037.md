@@ -5,7 +5,7 @@ year: 2021
 url: "https://hackerone.com/reports/1250037"
 topics: ["IDOR"]
 techniques: ["IDOR"]
-related: ["finding-gitlab-h1-2293343: both are IDOR → ATO via account identity flows; Stripe changes the account email, GitLab pollutes the reset recipient", "finding-paypal-h1-415081: both are IDOR in account management; Stripe takes over accounts via email change, PayPal escalates privilege across merchants"]
+related: ["finding-gitlab-h1-2293343: both are IDOR → ATO via account identity flows; Stripe changes the account email, GitLab pollutes the reset recipient", "lab-28-paypal-idor-privesc: both are IDOR in account management; Stripe takes over accounts via email change, PayPal escalates privilege across merchants"]
 type: "finding"
 status: "candidate"
 lab_url: ""
