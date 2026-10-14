@@ -323,24 +323,24 @@
     "added": ""
   },
   {
-    "title": "H1 #2293343: GitLab password reset array pollution → ATO",
+    "title": "GitLab password reset array pollution → ATO (H1 #2293343)",
     "researcher": "asterion04",
     "year": 2023,
     "url": "https://hackerone.com/reports/2293343",
     "topics": [
-      "IDOR"
+      "Parameter Pollution"
     ],
     "techniques": [
-      "IDOR"
+      "Parameter Pollution"
     ],
     "related": [
-      "lab-30-stripe-email-idor-ato: both are IDOR → ATO via account identity flows; GitLab pollutes the reset recipient, Stripe changes the account email"
+      "lab-30-stripe-email-idor-ato: both are → ATO via account identity flows; GitLab pollutes the reset recipient, Stripe changes the account email"
     ],
-    "type": "finding",
-    "status": "candidate",
-    "lab_url": "",
-    "summary": "Array-polluting user[email] in the password-reset request redirected the reset link to the attacker's address → one-request ATO with no victim interaction. Critical 10.0, $35,000 bounty verified on the report page.",
-    "slug": "finding-gitlab-h1-2293343",
+    "type": "lab",
+    "status": "shipped",
+    "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/31-gitlab-reset-array-pollution",
+    "summary": "user[email] sent as a JSON array where a string was expected → the mailer fanned the password-reset link out to every address in the array → one-request ATO with no victim interaction. Critical 10.0, $35,000. Lab: mock reset API + @attacker.lab-scoped mock inbox; exploit pollutes the array, takes the token from own inbox, resets and logs in as victim (TOKEN validated via /me oracle + old password must fail); fix = strict type check: email must be a string → 400 fail-closed.",
+    "slug": "lab-31-gitlab-reset-array-pollution",
     "added": ""
   },
   {
@@ -467,7 +467,7 @@
     "related": [
       "lab-28-paypal-idor-privesc: both are IDOR in account management; Stripe takes over accounts via email change, PayPal escalates privilege across merchants",
       "lab-29-valve-cdkeys-idor: both are missing object authorization; Stripe mutates account identity → ATO, Valve leaks mass CD keys",
-      "finding-gitlab-h1-2293343: both are IDOR → ATO via account identity flows; Stripe changes the account email, GitLab pollutes the reset recipient"
+      "lab-31-gitlab-reset-array-pollution: both are → ATO via account identity flows; Stripe changes the account email, GitLab pollutes the reset recipient"
     ],
     "type": "lab",
     "status": "shipped",
