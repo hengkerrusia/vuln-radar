@@ -30,12 +30,12 @@
   <p>Chaining client-side path traversal with web cache deception — turning a non-impactful finding into account takeover. From a private bounty audit.</p>
   <div class="links"><a href="https://zere.es/posts/cache-deception-cspt-account-takeover/" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/12-cspt-cache-deception" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
-<article class="card candidate">
-  <h3>CVE-2025-53640: Indico BOLA /api/principals → PII exposure<span class="badge candidate">candidate</span></h3>
+<article class="card lab">
+  <h3>CVE-2025-53640: Indico BOLA /api/principals → PII exposure<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2025 — rafaelcorvino1</div>
   <div class="topics"><span class="topic">IDOR</span></div>
-  <p>POST /api/principals with {\&quot;values\&quot;:[\&quot;User:&lt;id&gt;\&quot;]} dumped name/email/affiliation for arbitrary user IDs — no authorization on the object reference. Affects Indico 2.2–3.3.6, fixed in 3.3.7. CWE-639; working PoC published.</p>
-  <div class="links"><a href="https://github.com/rafaelcorvino1/CVE-2025-53640" target="_blank" rel="noopener">Read the original ↗</a></div>
+  <p>POST /api/principals with {\&quot;values\&quot;:[\&quot;User:&lt;id&gt;\&quot;]} dumped name/email/affiliation for arbitrary user IDs — no authorization check on the object reference, CWE-639. Affects Indico 2.2–3.3.6, fixed in 3.3.7. Lab: mock principals API (stdlib-only); analyst User:100 enumerates User:1–5 and extracts EMAIL1 (amelia.hartono@lab.test) via POST {\&quot;values\&quot;:[\&quot;User:&lt;id&gt;\&quot;]}; exploit contract STATUS/COUNT/EMAIL1, enumeration proven via independent server-side oracle; fix = resolve only self (if u and v == me) → foreign IDs return invalid, no PII leaks, self-resolution still works.</p>
+  <div class="links"><a href="https://github.com/rafaelcorvino1/CVE-2025-53640" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/32-indico-principals-bola" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 <article class="card lab">
   <h3>HTTP/1.1 Must Die: The Desync Endgame<span class="badge lab">🧪 lab</span></h3>
