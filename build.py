@@ -298,7 +298,7 @@ SERIES = [
     ("Labs 15–18 · CRLF", [15, 16, 17, 18]),
     ("Labs 19–24 · file inclusion / path traversal", [19, 20, 21, 22, 23, 24]),
     ("Labs 25+ · open redirect", [25, 26, 27]),
-    ("Labs 28+ · IDOR / access control", [28, 29, 30, 32]),
+    ("Labs 28+ · IDOR / access control", [28, 29, 30, 32, 33]),
     ("Labs 31+ · Parameter pollution", [31]),
 ]
 

@@ -5,7 +5,7 @@ year: 2025
 url: "https://github.com/rafaelcorvino1/CVE-2025-53640"
 topics: ["IDOR"]
 techniques: ["IDOR", "BOLA"]
-related: ["lab-29-valve-cdkeys-idor: both are missing object authorization → mass exposure; Indico exposes user PII, Valve exposes game CD keys", "finding-krayin-cve-2026-38529: both are BOLA in real open-source software; Indico leaks PII, Krayin allows password reset → ATO"]
+related: ["lab-29-valve-cdkeys-idor: both are missing object authorization → mass exposure; Indico exposes user PII, Valve exposes game CD keys", "lab-33-krayin-bola-password-reset: both are BOLA in real open-source software; Indico leaks PII, Krayin allows password reset → ATO"]
 type: "lab"
 status: "shipped"
 lab_url: "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/32-indico-principals-bola"
