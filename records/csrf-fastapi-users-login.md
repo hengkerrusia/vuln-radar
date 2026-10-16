@@ -1,1 +1,12 @@
-LS0tCnRpdGxlOiAiQ1ZFLTIwMjUtNjg0ODE6IGZhc3RhcGktdXNlcnMg4oCUIGxvZ2luIENTUkYgdmlhIE9BdXRoIHN0YXRlIgpyZXNlYXJjaGVyOiAiRGF2aWQgKDkwLWRheSBjb29yZGluYXRlZCBkaXNjbG9zdXJlKSIKeWVhcjogMjAyNQp1cmw6ICJodHRwczovL2dpdGh1Yi5jb20vZmFzdGFwaS11c2Vycy9mYXN0YXBpLXVzZXJzL3NlY3VyaXR5L2Fkdmlzb3JpZXMvR0hTQS01ajUzLTYzdzgtODYyNSIKdG9waWNzOiBbIkNTUkYiXQp0ZWNobmlxdWVzOiBbIkNTUkYiLCAibG9naW4gQ1NSRiJdCnJlbGF0ZWQ6IFtdCnR5cGU6ICJmaW5kaW5nIgpzdGF0dXM6ICJjYW5kaWRhdGUiCnN1bW1hcnk6ICJPQXV0aCBzdGF0ZSBwYXJhbWV0ZXIgaW4gZmFzdGFwaS11c2VycyA8IDE1LjAuMiB3YXMgYSBzdGF0ZWxlc3MgSldUIChnZW5lcmF0ZV9zdGF0ZV90b2tlbigpIGFsd2F5cyBjYWxsZWQgd2l0aCBlbXB0eSBzdGF0ZV9kYXRhKSDigJQgdmFsaWQgfjFoIGZvciBhbnkgY2xpZW50OyB0aGUgY2FsbGJhY2sgdmFsaWRhdGVkIG9ubHkgc2lnbmF0dXJlIGFuZCBleHBpcnksIG5ldmVyIGJpbmRpbmcgc3RhdGUgdG8gdGhlIGluaXRpYXRpbmcgc2Vzc2lvbi4gVHJpY2sgYSBsb2dnZWQtaW4gdmljdGltIGludG8gbG9hZGluZyB0aGUgYXR0YWNrZXIncyBjYWxsYmFjayBVUkwgKGNvZGUgKyBzdGF0ZSkg4oaSIGF0dGFja2VyJ3MgdXBzdHJlYW0gU1NPIGlkZW50aXR5IHBlcm1hbmVudGx5IGxpbmtlZCB0byB0aGUgdmljdGltJ3MgYWNjb3VudDogJzEtY2xpY2sgQWNjb3VudCBUYWtlb3ZlcicgcGVyIHRoZSB2ZW5kb3IgYWR2aXNvcnkuIEZpeGVkIGluIDE1LjAuMiAoZG91YmxlLXN1Ym1pdCBjb29raWUsIGNvbW1pdCA3Y2Y0MTNjZCkuIE5vdGU6IGxvZ2luIENTUkYgaXMgZXhwbGljaXRseSBvdXQtb2Ytc2NvcGUgYXQgbWFueSBib3VudHkgcHJvZ3JhbXMsIHdoaWNoIGlzIHdoeSB0aGlzIHNsb3QgdXNlcyBhIENWRSBpbnN0ZWFkIG9mIGEgYm91bnR5IHJlcG9ydC4gTGFiIGNhbmRpZGFjeTogU1RST05HIOKAlCBkaXN0aW5jdCwgdW5kZXItY292ZXJlZCBzdWItdGVjaG5pcXVlOyB0aW55IFB5dGhvbiBpbWFnZTsgZG9jdW1lbnRlZCBmaXguIgotLS0K
+---
+title: "CVE-2025-68481: fastapi-users — login CSRF via OAuth state"
+researcher: "David (90-day coordinated disclosure)"
+year: 2025
+url: "https://github.com/fastapi-users/fastapi-users/security/advisories/GHSA-5j53-63w8-8625"
+topics: ["CSRF"]
+techniques: ["CSRF", "login CSRF"]
+related: []
+type: "finding"
+status: "candidate"
+summary: "OAuth state parameter in fastapi-users < 15.0.2 was a stateless JWT (generate_state_token() always called with empty state_data) — valid ~1h for any client; the callback validated only signature and expiry, never binding state to the initiating session. Trick a logged-in victim into loading the attacker's callback URL (code + state) → attacker's upstream SSO identity permanently linked to the victim's account: '1-click Account Takeover' per the vendor advisory. Fixed in 15.0.2 (double-submit cookie, commit 7cf413cd). Note: login CSRF is explicitly out-of-scope at many bounty programs, which is why this slot uses a CVE instead of a bounty report. Lab candidacy: STRONG — distinct, under-covered sub-technique; tiny Python image; documented fix."
+---

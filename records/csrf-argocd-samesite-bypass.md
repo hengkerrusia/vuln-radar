@@ -1,1 +1,12 @@
-LS0tCnRpdGxlOiAiQ1ZFLTIwMjQtMjI0MjQ6IEFyZ28gQ0Qg4oCUIENTUkYgdmlhIFNhbWVTaXRlL2Nvb2tpZS1zY29waW5nIGJ5cGFzcyIKcmVzZWFyY2hlcjogIlVwd2luZCIKeWVhcjogMjAyNAp1cmw6ICJodHRwczovL3d3dy51cHdpbmQuaW8vZmVlZC91cHdpbmQtdGFrZXMtb3Zlci1hcmdvY2QtYW5kLWFuLWVrcy1jbHVzdGVyLXVzaW5nLW9ubHktYS1zaW1wbGUtY3NyZi12dWxuZXJhYmlsaXR5Igp0b3BpY3M6IFsiQ1NSRiJdCnRlY2huaXF1ZXM6IFsiQ1NSRiIsICJTYW1lU2l0ZSBieXBhc3MiXQpyZWxhdGVkOiBbXQp0eXBlOiAiZmluZGluZyIKc3RhdHVzOiAiY2FuZGlkYXRlIgpzdW1tYXJ5OiAiQXJnbyBDRCByZWxpZWQgb24gU2FtZVNpdGU9TGF4IGFzIGl0cyBDU1JGIGRlZmVuc2Ug4oCUIGJ1dCBTYW1lU2l0ZSBpcyBhIHNpdGUgKGVUTEQrMSkgYm91bmRhcnksIG5vdCBhbiBvcmlnaW4gYm91bmRhcnksIHNvIGFuIGF0dGFja2VyIG9uIGFueSBzaWJsaW5nIHN1YmRvbWFpbiBzdGlsbCBnZXRzIHRoZSBhdXRoIGNvb2tpZTsgbWlzc2luZyBDb250ZW50LVR5cGUgdmFsaWRhdGlvbiBsZXQgcHJlZmxpZ2h0LWxlc3MgcmVxdWVzdHMgcmVhY2ggc3RhdGUtY2hhbmdpbmcgQVBJIGVuZHBvaW50cy4gVXB3aW5kIGRlbW9uc3RyYXRlZCBlbmQtdG8tZW5kOiBmb3JnZWQgY3Jvc3Mtc2l0ZSBBUEkgY2FsbHMgZGVwbG95IGEgbWFsaWNpb3VzIEFwcGxpY2F0aW9uIOKGkiBwcml2aWxlZ2VkIHBvZHMg4oaSIGZ1bGwgS3ViZXJuZXRlcyBjbHVzdGVyIHRha2VvdmVyLiBBZmZlY3RzIDwgMi4xMC1yYzIgLyAyLjkuNCAvIDIuOC44IC8gMi43LjE1LiBGaXg6IHJlamVjdCBub24tR0VUIHJlcXVlc3RzIHdpdGhvdXQgYXBwbGljYXRpb24vanNvbiBDb250ZW50LVR5cGUuIExhYiBjYW5kaWRhY3k6IE1PREVSQVRFIOKAlCBoaWdoIGltcGFjdCBhbmQgd2VsbC1kb2N1bWVudGVkLCBidXQgbmVlZHMgdHdvIHNhbWUtcGFyZW50LWRvbWFpbiBvcmlnaW5zIChob3N0cy1maWxlIHRyaWNrKSBwbHVzIGEgaGFybmVzcy1zaW11bGF0ZWQgdmljdGltIGJyb3dzZXI7IGZpdHMgYW4gYWR2YW5jZWQgdGllci4iCi0tLQo=
+---
+title: "CVE-2024-22424: Argo CD — CSRF via SameSite/cookie-scoping bypass"
+researcher: "Upwind"
+year: 2024
+url: "https://www.upwind.io/feed/upwind-takes-over-argocd-and-an-eks-cluster-using-only-a-simple-csrf-vulnerability"
+topics: ["CSRF"]
+techniques: ["CSRF", "SameSite bypass"]
+related: []
+type: "finding"
+status: "candidate"
+summary: "Argo CD relied on SameSite=Lax as its CSRF defense — but SameSite is a site (eTLD+1) boundary, not an origin boundary, so an attacker on any sibling subdomain still gets the auth cookie; missing Content-Type validation let preflight-less requests reach state-changing API endpoints. Upwind demonstrated end-to-end: forged cross-site API calls deploy a malicious Application → privileged pods → full Kubernetes cluster takeover. Affects < 2.10-rc2 / 2.9.4 / 2.8.8 / 2.7.15. Fix: reject non-GET requests without application/json Content-Type. Lab candidacy: MODERATE — high impact and well-documented, but needs two same-parent-domain origins (hosts-file trick) plus a harness-simulated victim browser; fits an advanced tier."
+---
