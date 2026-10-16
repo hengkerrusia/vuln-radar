@@ -33,7 +33,7 @@
       "BOLA"
     ],
     "related": [
-      "finding-indico-cve-2025-53640: both are BOLA in real open-source software; Krayin allows password reset → ATO, Indico leaks PII"
+      "lab-32-indico-principals-bola: both are BOLA in real open-source software; Krayin allows password reset → ATO, Indico leaks PII"
     ],
     "type": "finding",
     "status": "candidate",
@@ -185,11 +185,11 @@
       "lab-29-valve-cdkeys-idor: both are missing object authorization → mass exposure; Indico exposes user PII, Valve exposes game CD keys",
       "finding-krayin-cve-2026-38529: both are BOLA in real open-source software; Indico leaks PII, Krayin allows password reset → ATO"
     ],
-    "type": "finding",
-    "status": "candidate",
-    "lab_url": "",
-    "summary": "POST /api/principals with {\\\"values\\\":[\\\"User:<id>\\\"]} dumped name/email/affiliation for arbitrary user IDs — no authorization on the object reference. Affects Indico 2.2–3.3.6, fixed in 3.3.7. CWE-639; working PoC published.",
-    "slug": "finding-indico-cve-2025-53640",
+    "type": "lab",
+    "status": "shipped",
+    "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/32-indico-principals-bola",
+    "summary": "POST /api/principals with {\\\"values\\\":[\\\"User:<id>\\\"]} dumped name/email/affiliation for arbitrary user IDs — no authorization check on the object reference, CWE-639. Affects Indico 2.2–3.3.6, fixed in 3.3.7. Lab: mock principals API (stdlib-only); analyst User:100 enumerates User:1–5 and extracts EMAIL1 (amelia.hartono@lab.test) via POST {\\\"values\\\":[\\\"User:<id>\\\"]}; exploit contract STATUS/COUNT/EMAIL1, enumeration proven via independent server-side oracle; fix = resolve only self (if u and v == me) → foreign IDs return invalid, no PII leaks, self-resolution still works.",
+    "slug": "lab-32-indico-principals-bola",
     "added": ""
   },
   {
@@ -659,7 +659,7 @@
       "IDOR"
     ],
     "related": [
-      "finding-indico-cve-2025-53640: both are missing object authorization → mass exposure; Valve exposes game CD keys, Indico exposes user PII",
+      "lab-32-indico-principals-bola: both are missing object authorization → mass exposure; Valve exposes game CD keys, Indico exposes user PII",
       "lab-28-paypal-idor-privesc: both are IDOR/BOLA in partner account flows; Valve leaks mass CD keys, PayPal escalates privilege across merchants"
     ],
     "type": "lab",

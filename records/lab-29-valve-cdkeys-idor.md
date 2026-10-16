@@ -5,7 +5,7 @@ year: 2018
 url: "https://hackerone.com/reports/391217"
 topics: ["IDOR"]
 techniques: ["IDOR"]
-related: ["finding-indico-cve-2025-53640: both are missing object authorization → mass exposure; Valve exposes game CD keys, Indico exposes user PII", "lab-28-paypal-idor-privesc: both are IDOR/BOLA in partner account flows; Valve leaks mass CD keys, PayPal escalates privilege across merchants"]
+related: ["lab-32-indico-principals-bola: both are missing object authorization → mass exposure; Valve exposes game CD keys, Indico exposes user PII", "lab-28-paypal-idor-privesc: both are IDOR/BOLA in partner account flows; Valve leaks mass CD keys, PayPal escalates privilege across merchants"]
 type: "lab"
 status: "shipped"
 lab_url: "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/29-valve-cdkeys-idor"
