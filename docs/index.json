@@ -22,9 +22,9 @@
   },
   {
     "title": "CVE-2026-38529: Krayin CRM BOLA → password reset → ATO",
-    "researcher": "",
+    "researcher": "trexnegro",
     "year": 2026,
-    "url": "https://cve.report/CVE-2026-38529.pdf",
+    "url": "https://github.com/trexnegro/security-advisories/blob/HEAD/CVE-2026-38529/README.md",
     "topics": [
       "IDOR"
     ],
@@ -35,11 +35,11 @@
     "related": [
       "lab-32-indico-principals-bola: both are BOLA in real open-source software; Krayin allows password reset → ATO, Indico leaks PII"
     ],
-    "type": "finding",
-    "status": "candidate",
-    "lab_url": "",
-    "summary": "BOLA in Krayin CRM v2.2.x Settings/UserController.php allows arbitrary password reset → full ATO. CVSS 8.8 High, CWE-269 + CWE-639. PoC and exact fix commit not yet verified — verify before building a lab.",
-    "slug": "finding-krayin-cve-2026-38529",
+    "type": "lab",
+    "status": "shipped",
+    "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/33-krayin-bola-password-reset",
+    "summary": "PUT /admin/settings/users/edit/{id} with form-urlencoded password=... resets any non-admin user's password — gate checked roles ((caller non-admin) && (target non-admin)) but never ownership, CWE-269 + CWE-639. Affects Krayin CRM 2.2.x (tested commit ba25b7e7), CVSS 8.8. Lab: mock CRM (stdlib-only); attacker id 100 resets victim id 1's password then logs in as victim → ATO; exploit contract STATUS/VICTIM_TOKEN, token proven via independent /me oracle; fix = owner-or-admin → 403, self-edit and admin-edit still work.",
+    "slug": "lab-33-krayin-bola-password-reset",
     "added": ""
   },
   {
@@ -183,7 +183,7 @@
     ],
     "related": [
       "lab-29-valve-cdkeys-idor: both are missing object authorization → mass exposure; Indico exposes user PII, Valve exposes game CD keys",
-      "finding-krayin-cve-2026-38529: both are BOLA in real open-source software; Indico leaks PII, Krayin allows password reset → ATO"
+      "lab-33-krayin-bola-password-reset: both are BOLA in real open-source software; Indico leaks PII, Krayin allows password reset → ATO"
     ],
     "type": "lab",
     "status": "shipped",

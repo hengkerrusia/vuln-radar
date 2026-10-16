@@ -23,12 +23,12 @@
   <p>CRLF injection that splits a request at a proxy — desync leading to response queue poisoning.</p>
   <div class="links"><a href="https://portswigger.net/research/crlf-powered-desync-attacks" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/16-crlf-desync" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
-<article class="card candidate">
-  <h3>CVE-2026-38529: Krayin CRM BOLA → password reset → ATO<span class="badge candidate">candidate</span></h3>
-  <div class="meta">2026</div>
+<article class="card lab">
+  <h3>CVE-2026-38529: Krayin CRM BOLA → password reset → ATO<span class="badge lab">🧪 lab</span></h3>
+  <div class="meta">2026 — trexnegro</div>
   <div class="topics"><span class="topic">IDOR</span></div>
-  <p>BOLA in Krayin CRM v2.2.x Settings/UserController.php allows arbitrary password reset → full ATO. CVSS 8.8 High, CWE-269 + CWE-639. PoC and exact fix commit not yet verified — verify before building a lab.</p>
-  <div class="links"><a href="https://cve.report/CVE-2026-38529.pdf" target="_blank" rel="noopener">Read the original ↗</a></div>
+  <p>PUT /admin/settings/users/edit/{id} with form-urlencoded password=... resets any non-admin user&#x27;s password — gate checked roles ((caller non-admin) &amp;&amp; (target non-admin)) but never ownership, CWE-269 + CWE-639. Affects Krayin CRM 2.2.x (tested commit ba25b7e7), CVSS 8.8. Lab: mock CRM (stdlib-only); attacker id 100 resets victim id 1&#x27;s password then logs in as victim → ATO; exploit contract STATUS/VICTIM_TOKEN, token proven via independent /me oracle; fix = owner-or-admin → 403, self-edit and admin-edit still work.</p>
+  <div class="links"><a href="https://github.com/trexnegro/security-advisories/blob/HEAD/CVE-2026-38529/README.md" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/33-krayin-bola-password-reset" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 <article class="card lab">
   <h3>form-data CRLF injection<span class="badge lab">🧪 lab</span></h3>
