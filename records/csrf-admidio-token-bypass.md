@@ -1,1 +1,12 @@
-LS0tCnRpdGxlOiAiQ1ZFLTIwMjYtMzQzODM6IEFkbWlkaW8g4oCUIENTUkYgdmFsaWRhdGlvbiBza2lwcGVkIHZpYSBwYXJhbWV0ZXIiCnJlc2VhcmNoZXI6ICJBZG1pZGlvIgp5ZWFyOiAyMDI2CnVybDogImh0dHBzOi8vZ2l0aHViLmNvbS9BZG1pZGlvL2FkbWlkaW8vc2VjdXJpdHkvYWR2aXNvcmllcy9HSFNBLTRyd21jNW1qd2g3eCIKdG9waWNzOiBbIkNTUkYiXQp0ZWNobmlxdWVzOiBbIkNTUkYiLCAidG9rZW4gdmFsaWRhdGlvbiBmbGF3Il0KcmVsYXRlZDogW10KdHlwZTogImZpbmRpbmciCnN0YXR1czogImNhbmRpZGF0ZSIKc3VtbWFyeTogIkludmVudG9yeSBtb2R1bGUncyBpdGVtX3NhdmUgZW5kcG9pbnQgcmVhZHMgYSB1c2VyLWNvbnRyb2xsYWJsZSBQT1NUIHBhcmFtZXRlciAnaW1wb3J0ZWQnOyBJdGVtU2VydmljZTo6c2F2ZSh0cnVlKSBjb21wbGV0ZWx5IHNraXBzIENTUkYgdG9rZW4gdmFsaWRhdGlvbiAoYW5kIHNlcnZlci1zaWRlIGZvcm0gdmFsaWRhdGlvbikgd2hlbiBpdCBpcyB0cnVlIOKAlCB0aGUgYXBwIGhhcyBDU1JGIHRva2VucywgYnV0IGVuZm9yY2VtZW50IGlzIGNvbmRpdGlvbmFsIG9uIGF0dGFja2VyLWNvbnRyb2xsZWQgaW5wdXQuIEFmZmVjdHMgYWRtaWRpby9hZG1pZGlvIOKJpCA1LjAuNywgZml4ZWQgNS4wLjggKGNvbW1pdCAwMDQ5NGI5NSkuIEltcGFjdCBpcyBtb2Rlc3QgKGFyYml0cmFyeSBpbnZlbnRvcnkgd3JpdGVzLCBDVlNTIDQuMywgcHJpdmlsZWdlcyByZXF1aXJlZCkuIFNpYmxpbmcgYWR2aXNvcnkgQ1ZFLTIwMjYtMzQzODQgKHJlZ2lzdHJhdGlvbi1hcHByb3ZhbCBhY3Rpb25zIHZpYSBHRVQgd2l0aCBubyBDU1JGIHRva2VuIOKGkiBhdHRhY2tlciBtZXJnZXMgb3duIHJlZ2lzdHJhdGlvbiBpbnRvIGFuIGV4aXN0aW5nIGFjY291bnQsIHJlcGxhY2luZyBjcmVkZW50aWFscyA9IEFUTywgQ1ZTUyA3LjMpIGlzIHRoZSBzdHJvbmdlciBwaWNrIGlmIEFUTyBpcyB3YW50ZWQgaW4gdGhpcyBzbG90LiBBZHZpc29yeSByZWFkIHZpYSBhcmNoaXZlIG1pcnJvciDigJQgcmUtY2hlY2sgdGhlIGxpdmUgR0hTQSBwYWdlIGJlZm9yZSBjb21taXR0aW5nIHRvIGEgbGFiLiBMYWIgY2FuZGlkYWN5OiBNT0RFUkFURSAocmVzZXJ2ZSkuIgotLS0K
+---
+title: "CVE-2026-34383: Admidio — CSRF validation skipped via parameter"
+researcher: "Admidio"
+year: 2026
+url: "https://github.com/Admidio/admidio/security/advisories/GHSA-4rwmc5mjwh7x"
+topics: ["CSRF"]
+techniques: ["CSRF", "token validation flaw"]
+related: []
+type: "finding"
+status: "candidate"
+summary: "Inventory module's item_save endpoint reads a user-controllable POST parameter 'imported'; ItemService::save(true) completely skips CSRF token validation (and server-side form validation) when it is true — the app has CSRF tokens, but enforcement is conditional on attacker-controlled input. Affects admidio/admidio ≤ 5.0.7, fixed 5.0.8 (commit 00494b95). Impact is modest (arbitrary inventory writes, CVSS 4.3, privileges required). Sibling advisory CVE-2026-34384 (registration-approval actions via GET with no CSRF token → attacker merges own registration into an existing account, replacing credentials = ATO, CVSS 7.3) is the stronger pick if ATO is wanted in this slot. Advisory read via archive mirror — re-check the live GHSA page before committing to a lab. Lab candidacy: MODERATE (reserve)."
+---

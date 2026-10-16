@@ -1,1 +1,12 @@
-LS0tCnRpdGxlOiAiQ1ZFLTIwMjUtNjg0MzQ6IE9wZW5Tb3VyY2VQT1Mg4oCUIENTUkYga2xhc2lrIHRhbnBhIHRva2VuIgpyZXNlYXJjaGVyOiAiQWRpdHlhIFNpbmdoIC8gTml4b24tSCIKeWVhcjogMjAyNQp1cmw6ICJodHRwczovL2dpdGh1Yi5jb20vb3BlbnNvdXJjZXBvcy9vcGVuc291cmNlcG9zL3NlY3VyaXR5L2Fkdmlzb3JpZXMvR0hTQS13am00LWhmd2ctNXc1ciIKdG9waWNzOiBbIkNTUkYiXQp0ZWNobmlxdWVzOiBbIkNTUkYiLCAibWlzc2luZyB0b2tlbiJdCnJlbGF0ZWQ6IFtdCnR5cGU6ICJmaW5kaW5nIgpzdGF0dXM6ICJjYW5kaWRhdGUiCnN1bW1hcnk6ICJHbG9iYWwgQ1NSRiBmaWx0ZXIgY29tbWVudGVkIG91dCB3aXRoIGEgVE9ETyBpbiBhcHAvQ29uZmlnL0ZpbHRlcnMucGhwIChPcGVuU291cmNlUE9TIDMuNC4wLzMuNC4xLCBQSFAvQ29kZUlnbml0ZXIpIOKAlCBldmVyeSBQT1NULCBpbmNsdWRpbmcgYWRtaW4gZW5kcG9pbnRzLCByaWRlcyB0aGUgc2Vzc2lvbiBjb29raWUgYWxvbmUuIEF0dGFja2VyJ3MgYXV0by1zdWJtaXQgZm9ybSBjcmVhdGVzIGEgcm9ndWUgZnVsbC1wcml2aWxlZ2UgQWRtaW5pc3RyYXRvciB3aGVuIGEgbG9nZ2VkLWluIGFkbWluIHZpc2l0cyBpdCDihpIgY29tcGxldGUgUE9TIHN5c3RlbSB0YWtlb3ZlciwgQ1ZTUyA4LjguIEZpeGVkIGluIDMuNC4yIChjb21taXQgZDU3NWM4ZGEpLiBMYWIgY2FuZGlkYWN5OiBTVFJPTkcg4oCUIGNhbm9uaWNhbCAnbm8gdG9rZW4gYXQgYWxsJyBiYXNlbGluZSwgb25lLWxpbmUgZG9jdW1lbnRlZCBmaXgsIHNtYWxsIFBIUCBpbWFnZSwgaGlnaCBvZmZsaW5lLWRlbW9uc3RyYWJsZSBpbXBhY3Q7IHJlY29tbWVuZGVkIGFzIHRoZSBmaXJzdCBDU1JGLXNlcmllcyBsYWIuIgotLS0K
+---
+title: "CVE-2025-68434: OpenSourcePOS — CSRF klasik tanpa token"
+researcher: "Aditya Singh / Nixon-H"
+year: 2025
+url: "https://github.com/opensourcepos/opensourcepos/security/advisories/GHSA-wjm4-hfwg-5w5r"
+topics: ["CSRF"]
+techniques: ["CSRF", "missing token"]
+related: []
+type: "finding"
+status: "candidate"
+summary: "Global CSRF filter commented out with a TODO in app/Config/Filters.php (OpenSourcePOS 3.4.0/3.4.1, PHP/CodeIgniter) — every POST, including admin endpoints, rides the session cookie alone. Attacker's auto-submit form creates a rogue full-privilege Administrator when a logged-in admin visits it → complete POS system takeover, CVSS 8.8. Fixed in 3.4.2 (commit d575c8da). Lab candidacy: STRONG — canonical 'no token at all' baseline, one-line documented fix, small PHP image, high offline-demonstrable impact; recommended as the first CSRF-series lab."
+---

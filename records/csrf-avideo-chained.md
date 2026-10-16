@@ -1,1 +1,12 @@
-LS0tCnRpdGxlOiAiQ1ZFLTIwMjYtMzQzOTQ6IEFWaWRlbyDigJQgQ1NSRiBjaGFpbmVkIHRvIHBsYXRmb3JtIHRha2VvdmVyIgpyZXNlYXJjaGVyOiAiYWlzYWZlLmlvICh2aWEgV1dCTi9BVmlkZW8gYWR2aXNvcnkpIgp5ZWFyOiAyMDI2CnVybDogImh0dHBzOi8vZ2l0aHViLmNvbS9XV0JOL0FWaWRlby9zZWN1cml0eS9hZHZpc29yaWVzL0dIU0EtNHd3ci03aDdjLWNocXIiCnRvcGljczogWyJDU1JGIl0KdGVjaG5pcXVlczogWyJDU1JGIiwgImNoYWluZWQiXQpyZWxhdGVkOiBbXQp0eXBlOiAiZmluZGluZyIKc3RhdHVzOiAiY2FuZGlkYXRlIgpzdW1tYXJ5OiAiQ2hhaW4gb2YgdGhyZWUgZmxhd3MgaW4gQVZpZGVvIOKJpCAyNi4wOiAoYSkgYWRtaW4vc2F2ZS5qc29uLnBocCB3cml0ZXMgYXJiaXRyYXJ5IHBsdWdpbiBzZXR0aW5ncyB3aXRoIG5vIENTUkYgdG9rZW4gY2hlY2s7IChiKSB0aGUgYXBwIGV4cGxpY2l0bHkgd2Vha2VucyBicm93c2VyIGRlZmF1bHRzIHdpdGggc2Vzc2lvbi5jb29raWVfc2FtZXNpdGU9Tm9uZSwgc28gY3Jvc3Mtb3JpZ2luIGZvcm0gUE9TVHMgY2FycnkgdGhlIHNlc3Npb247IChjKSB0aGUgcGx1Z2lucyB0YWJsZSBzaXRzIGluIGlnbm9yZVRhYmxlU2VjdXJpdHlDaGVjaygpLCBieXBhc3NpbmcgT1JNLWxldmVsIGFjY2VzcyBjb250cm9scy4gT25lIGZvcmdlZCBmb3JtIFBPU1QgcmV3cml0ZXMgUGF5UGFsL1N0cmlwZS9TMy9MREFQIHBsdWdpbiBjb25maWcg4oaSIGZ1bGwgcGxhdGZvcm0gYW5kIHBheW1lbnQgdGFrZW92ZXIsIENWU1MgOC4xOyB0aGUgYWR2aXNvcnkgc2hpcHMgdGhlIGZ1bGwgYXV0by1zdWJtaXQgUG9DLiBEb2N1bWVudGVkIGZpeDogaXNHbG9iYWxUb2tlblZhbGlkKCkgYXQgYWRtaW4vc2F2ZS5qc29uLnBocDoxMC4gQWR2aXNvcnkgcmVhZCB2aWEgYXJjaGl2ZSBtaXJyb3Ig4oCUIHJlLWNoZWNrIHRoZSBsaXZlIEdIU0EgcGFnZSBiZWZvcmUgY29tbWl0dGluZyB0byBhIGxhYi4gTGFiIGNhbmRpZGFjeTogZGVmZXJyZWQg4oCUIHNlZSB0aGUgQ1NSRiBjdXJhdGlvbiBub3Rlczsga2VwdCBhcyBhIGdlbnVpbmUgZmluZGluZyByZWNvcmQuIgotLS0K
+---
+title: "CVE-2026-34394: AVideo — CSRF chained to platform takeover"
+researcher: "aisafe.io (via WWBN/AVideo advisory)"
+year: 2026
+url: "https://github.com/WWBN/AVideo/security/advisories/GHSA-4wwr-7h7c-chqr"
+topics: ["CSRF"]
+techniques: ["CSRF", "chained"]
+related: []
+type: "finding"
+status: "candidate"
+summary: "Chain of three flaws in AVideo ≤ 26.0: (a) admin/save.json.php writes arbitrary plugin settings with no CSRF token check; (b) the app explicitly weakens browser defaults with session.cookie_samesite=None, so cross-origin form POSTs carry the session; (c) the plugins table sits in ignoreTableSecurityCheck(), bypassing ORM-level access controls. One forged form POST rewrites PayPal/Stripe/S3/LDAP plugin config → full platform and payment takeover, CVSS 8.1; the advisory ships the full auto-submit PoC. Documented fix: isGlobalTokenValid() at admin/save.json.php:10. Advisory read via archive mirror — re-check the live GHSA page before committing to a lab. Lab candidacy: deferred — see the CSRF curation notes; kept as a genuine finding record."
+---

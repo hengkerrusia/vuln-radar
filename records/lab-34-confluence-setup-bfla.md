@@ -1,1 +1,13 @@
-LS0tCnRpdGxlOiAiQ1ZFLTIwMjMtMjI1MTU6IENvbmZsdWVuY2UgQkZMQSDihpIgcmFudGFpIHNldHVwIOKGkiBhZG1pbiB0YWtlb3ZlciIKcmVzZWFyY2hlcjogIkF0bGFzc2lhbiIKeWVhcjogMjAyMwp1cmw6ICJodHRwczovL2NvbmZsdWVuY2UuYXRsYXNzaWFuLmNvbS9zZWN1cml0eS9jdmUtMjAyMy0yMjUxNS1wcml2aWxlZ2UtZXNjYWxhdGlvbi12dWxuZXJhYmlsaXR5LWluLWNvbmZsdWVuY2UtZGF0YS1jZW50ZXItYW5kLXNlcnZlci0xMjk1NjgyMjc2Lmh0bWwiCnRvcGljczogWyJCRkxBIl0KdGVjaG5pcXVlczogWyJCRkxBIl0KcmVsYXRlZDogW10KdHlwZTogImxhYiIKc3RhdHVzOiAic2hpcHBlZCIKbGFiX3VybDogImh0dHBzOi8vZ2l0aHViLmNvbS9oZW5na2VycnVzaWEvZml4dGhlY29kZS90cmVlL21haW4vbGFicy93ZWIvMzQtY29uZmx1ZW5jZS1zZXR1cC1iZmxhIgpzdW1tYXJ5OiAiR0VUIC9zZXJ2ZXItaW5mby5hY3Rpb24gd2l0aCBYV29yay1zdHlsZSBwYXJhbWV0ZXIgYmluZGluZyBib290c3RyYXBTdGF0dXNQcm92aWRlci5hcHBsaWNhdGlvbkNvbmZpZy5zZXR1cENvbXBsZXRlPTAgZmxpcHMgc2V0dXAgc3RhdGUgb24gYW4gYWxyZWFkeS1jb25maWd1cmVkIGluc3RhbmNlIOKAlCBicm9rZW4gZnVuY3Rpb24tbGV2ZWwgYXV0aG9yaXphdGlvbiBvbiAvc2V0dXAvKiwgQ1dFLTI4NS4gQXR0YWNrZXIgY2hhaW5zIHNldHVwYWRtaW5pc3RyYXRvci1zdGFydCDihpIgc2V0dXBhZG1pbmlzdHJhdG9yLmFjdGlvbiB0byBjcmVhdGUgYW4gYWRtaW5pc3RyYXRvciwgdGhlbiBkb2xvZ2luIOKGkiBmdWxsIEFUTyB3aXRoIHplcm8gYXV0aGVudGljYXRpb24uIEFmZmVjdHMgQ29uZmx1ZW5jZSBEYXRhIENlbnRlci9TZXJ2ZXIgOC4wLjDigJM4LjUuMSAoZml4ZWQgOC4zLjMvOC40LjMvOC41LjIrKSwgQ1ZTUyAxMC4wLCBDSVNBIEtFViwgZXhwbG9pdGVkIGJ5IG5hdGlvbi1zdGF0ZSBhY3RvcnMuIExhYjogbGlnaHR3ZWlnaHQgc3RkbGliLW9ubHkgbW9jazsgZXhwbG9pdCBjb250cmFjdCBTVEFUVVMvQURNSU5fVE9LRU4sIHRva2VuIHByb3ZlbiB2aWEgaW5kZXBlbmRlbnQgL21lIG9yYWNsZSAoaXNfYWRtaW4pOyBmaXggPSAvc2VydmVyLWluZm8uYWN0aW9uIHJlYWQtb25seSArIC9zZXR1cC8qIOKGkiA0MDMgYWZ0ZXIgc2V0dXAgY29tcGxldGUgKGZhaWwtY2xvc2VkLCBtaXJyb3JzIEF0bGFzc2lhbidzIGludGVyaW0gbWl0aWdhdGlvbikuIgotLS0K
+---
+title: "CVE-2023-22515: Confluence BFLA → rantai setup → admin takeover"
+researcher: "Atlassian"
+year: 2023
+url: "https://confluence.atlassian.com/security/cve-2023-22515-privilege-escalation-vulnerability-in-confluence-data-center-and-server-1295682276.html"
+topics: ["BFLA"]
+techniques: ["BFLA"]
+related: []
+type: "lab"
+status: "shipped"
+lab_url: "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/34-confluence-setup-bfla"
+summary: "GET /server-info.action with XWork-style parameter binding bootstrapStatusProvider.applicationConfig.setupComplete=0 flips setup state on an already-configured instance — broken function-level authorization on /setup/*, CWE-285. Attacker chains setupadministrator-start → setupadministrator.action to create an administrator, then dologin → full ATO with zero authentication. Affects Confluence Data Center/Server 8.0.0–8.5.1 (fixed 8.3.3/8.4.3/8.5.2+), CVSS 10.0, CISA KEV, exploited by nation-state actors. Lab: lightweight stdlib-only mock; exploit contract STATUS/ADMIN_TOKEN, token proven via independent /me oracle (is_admin); fix = /server-info.action read-only + /setup/* → 403 after setup complete (fail-closed, mirrors Atlassian's interim mitigation)."
+---
