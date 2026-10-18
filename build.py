@@ -301,7 +301,7 @@ SERIES = [
     ("Labs 28+ · IDOR / access control", [28, 29, 30, 32, 33]),
     ("Labs 31+ · Parameter pollution", [31]),
     ("Labs 34+ · BFLA", [34]),
-    ("Labs 35+ · CSRF", [35]),
+    ("Labs 35+ · CSRF", [35, 36]),
 ]
 
 
