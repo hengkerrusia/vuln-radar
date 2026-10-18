@@ -16,7 +16,7 @@
   </div>
 </header>
 <main class="wrap">
-<h1>2025</h1><p class="lede">8 records.</p><article class="card lab">
+<h1>2025</h1><p class="lede">9 records.</p><article class="card lab">
   <h3>Apache Traffic Server chunked smuggling<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2025 — CVE-2025-65114</div>
   <div class="topics"><span class="topic">Request Smuggling</span></div>
@@ -43,6 +43,13 @@
   <div class="topics"><span class="topic">CSRF</span></div>
   <p>Global CSRF filter commented out with a TODO in app/Config/Filters.php (OpenSourcePOS 3.4.0/3.4.1, PHP/CodeIgniter) — every POST, including admin endpoints, rides the session cookie alone. Attacker&#x27;s auto-submit form creates a rogue full-privilege Administrator when a logged-in admin visits it → complete POS system takeover, CVSS 8.8. Fixed in 3.4.2 (commit d575c8da). Lab candidacy: STRONG — canonical &#x27;no token at all&#x27; baseline, one-line documented fix, small PHP image, high offline-demonstrable impact; recommended as the first CSRF-series lab.</p>
   <div class="links"><a href="https://github.com/opensourcepos/opensourcepos/security/advisories/GHSA-wjm4-hfwg-5w5r" target="_blank" rel="noopener">Read the original ↗</a></div>
+</article>
+<article class="card lab">
+  <h3>CVE-2025-68434: OpenSourcePOS — CSRF klasik tanpa token<span class="badge lab">🧪 lab</span></h3>
+  <div class="meta">2025 — Aditya Singh / Nixon-H</div>
+  <div class="topics"><span class="topic">CSRF</span></div>
+  <p>Global CSRF filter commented out with a TODO in app/Config/Filters.php (OpenSourcePOS 3.4.0/3.4.1, PHP/CodeIgniter) — every POST, including admin endpoints, rides the session cookie alone. Attacker&#x27;s auto-submit form creates a rogue full-privilege Administrator when a logged-in admin visits it → complete POS system takeover, CVSS 8.8. Fixed in 3.4.2 (commit d575c8da). Lab: stdlib-only mock of the vulnerable POST /users; exploit contract STATUS/ADMIN_TOKEN, admin takeover proven via /me oracle (is_admin=true); fix = per-session CSRF token required on every POST → 403 without a valid token.</p>
+  <div class="links"><a href="https://github.com/opensourcepos/opensourcepos/security/advisories/GHSA-wjm4-hfwg-5w5r" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/35-opensourcepos-classic-csrf" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 <article class="card candidate">
   <h3>CVE-2025-68481: fastapi-users — login CSRF via OAuth state<span class="badge candidate">candidate</span></h3>
