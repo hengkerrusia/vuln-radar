@@ -16,7 +16,7 @@
   </div>
 </header>
 <main class="wrap">
-<h1>2026</h1><p class="lede">8 records.</p><article class="card lab">
+<h1>2026</h1><p class="lede">9 records.</p><article class="card lab">
   <h3>CRLF-Powered Desync Attacks<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2026 — PortSwigger Research</div>
   <div class="topics"><span class="topic">CRLF Injection</span></div>
@@ -29,6 +29,13 @@
   <div class="topics"><span class="topic">CSRF</span></div>
   <p>Inventory module&#x27;s item_save endpoint reads a user-controllable POST parameter &#x27;imported&#x27;; ItemService::save(true) completely skips CSRF token validation (and server-side form validation) when it is true — the app has CSRF tokens, but enforcement is conditional on attacker-controlled input. Affects admidio/admidio ≤ 5.0.7, fixed 5.0.8 (commit 00494b95). Impact is modest (arbitrary inventory writes, CVSS 4.3, privileges required). Sibling advisory CVE-2026-34384 (registration-approval actions via GET with no CSRF token → attacker merges own registration into an existing account, replacing credentials = ATO, CVSS 7.3) is the stronger pick if ATO is wanted in this slot. Advisory read via archive mirror — re-check the live GHSA page before committing to a lab. Lab candidacy: MODERATE (reserve).</p>
   <div class="links"><a href="https://github.com/Admidio/admidio/security/advisories/GHSA-4rwmc5mjwh7x" target="_blank" rel="noopener">Read the original ↗</a></div>
+</article>
+<article class="card lab">
+  <h3>CVE-2026-34383: Admidio — penegakan CSRF kondisional pada input penyerang<span class="badge lab">🧪 lab</span></h3>
+  <div class="meta">2026 — Admidio</div>
+  <div class="topics"><span class="topic">CSRF</span></div>
+  <p>Parameter POST &#x27;imported&#x27; yang dikontrol penyerang memutuskan apakah validasi token CSRF dan validasi form dijalankan (admidio/admidio &lt;= 5.0.7, PHP; pelapor @offset) — request tempaan tanpa token valid menyimpan item mentah ke inventory, termasuk quantity invalid yang pasti ditolak validasi normal; CVSS 4.3. Fixed 5.0.8 (commit 00494b95). Lab: mock stdlib modul inventory; exploit contract STATUS/ITEM_ID, bukti lewat GET /inventory (quantity negatif/non-integer); fix = token CSRF + validasi form selalu dijalankan — flag request tak boleh mengendalikan penegakan.</p>
+  <div class="links"><a href="https://github.com/Admidio/admidio/security/advisories/GHSA-4rwm-c5mj-wh7x" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/38-admidio-imported-csrf" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 <article class="card candidate">
   <h3>CVE-2026-34394: AVideo — CSRF chained to platform takeover<span class="badge candidate">candidate</span></h3>
