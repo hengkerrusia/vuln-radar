@@ -30,12 +30,12 @@
   <p>Parameter POST &#x27;imported&#x27; yang dikontrol penyerang memutuskan apakah validasi token CSRF dan validasi form dijalankan (admidio/admidio &lt;= 5.0.7, PHP; pelapor @offset) — request tempaan tanpa token valid menyimpan item mentah ke inventory, termasuk quantity invalid yang pasti ditolak validasi normal; CVSS 4.3. Fixed 5.0.8 (commit 00494b95). Lab: mock stdlib modul inventory; exploit contract STATUS/ITEM_ID, bukti lewat GET /inventory (quantity negatif/non-integer); fix = token CSRF + validasi form selalu dijalankan — flag request tak boleh mengendalikan penegakan.</p>
   <div class="links"><a href="https://github.com/Admidio/admidio/security/advisories/GHSA-4rwm-c5mj-wh7x" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/38-admidio-imported-csrf" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
-<article class="card candidate">
-  <h3>CVE-2026-34394: AVideo — CSRF chained to platform takeover<span class="badge candidate">candidate</span></h3>
+<article class="card lab">
+  <h3>CVE-2026-34394: AVideo — CSRF config plugin → takeover platform<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2026 — aisafe.io (via WWBN/AVideo advisory)</div>
   <div class="topics"><span class="topic">CSRF</span></div>
-  <p>Chain of three flaws in AVideo ≤ 26.0: (a) admin/save.json.php writes arbitrary plugin settings with no CSRF token check; (b) the app explicitly weakens browser defaults with session.cookie_samesite=None, so cross-origin form POSTs carry the session; (c) the plugins table sits in ignoreTableSecurityCheck(), bypassing ORM-level access controls. One forged form POST rewrites PayPal/Stripe/S3/LDAP plugin config → full platform and payment takeover, CVSS 8.1; the advisory ships the full auto-submit PoC. Documented fix: isGlobalTokenValid() at admin/save.json.php:10. Advisory read via archive mirror — re-check the live GHSA page before committing to a lab. Lab candidacy: deferred — see the CSRF curation notes; kept as a genuine finding record.</p>
-  <div class="links"><a href="https://github.com/WWBN/AVideo/security/advisories/GHSA-4wwr-7h7c-chqr" target="_blank" rel="noopener">Read the original ↗</a></div>
+  <p>POST /admin/save.json.php menulis field POST arbitrer ke konfigurasi plugin tanpa pernah memanggil isGlobalTokenValid()/verifyToken() (WWBN/AVideo &lt;= 26.0, PHP; pelapor aisafe.io) — request tempaan bermodal cookie sesi admin mengubah paypalReceiverEmail plugin PayPerView; diperparah cookie SameSite=None yang eksplisit dan mass-assignment tanpa allowlist; CVSS 8.1. Fix anjuran advisory: isGlobalTokenValid() di save.json.php:10. Lab: mock stdlib panel admin (tanpa MySQL); exploit contract STATUS/PLUGIN/PAYPAL_EMAIL, bukti lewat GET /admin/plugins; fix = token CSRF divalidasi tepat setelah cek admin → 403 fail-closed.</p>
+  <div class="links"><a href="https://github.com/WWBN/AVideo/security/advisories/GHSA-4wwr-7h7c-chqr" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/39-avideo-plugin-csrf" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 <article class="card lab">
   <h3>CVE-2026-38529: Krayin CRM BOLA → password reset → ATO<span class="badge lab">🧪 lab</span></h3>

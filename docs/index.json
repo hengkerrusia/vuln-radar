@@ -41,7 +41,7 @@
     "added": ""
   },
   {
-    "title": "CVE-2026-34394: AVideo — CSRF chained to platform takeover",
+    "title": "CVE-2026-34394: AVideo — CSRF config plugin → takeover platform",
     "researcher": "aisafe.io (via WWBN/AVideo advisory)",
     "year": 2026,
     "url": "https://github.com/WWBN/AVideo/security/advisories/GHSA-4wwr-7h7c-chqr",
@@ -50,14 +50,14 @@
     ],
     "techniques": [
       "CSRF",
-      "chained"
+      "missing token"
     ],
     "related": [],
-    "type": "finding",
-    "status": "candidate",
-    "summary": "Chain of three flaws in AVideo ≤ 26.0: (a) admin/save.json.php writes arbitrary plugin settings with no CSRF token check; (b) the app explicitly weakens browser defaults with session.cookie_samesite=None, so cross-origin form POSTs carry the session; (c) the plugins table sits in ignoreTableSecurityCheck(), bypassing ORM-level access controls. One forged form POST rewrites PayPal/Stripe/S3/LDAP plugin config → full platform and payment takeover, CVSS 8.1; the advisory ships the full auto-submit PoC. Documented fix: isGlobalTokenValid() at admin/save.json.php:10. Advisory read via archive mirror — re-check the live GHSA page before committing to a lab. Lab candidacy: deferred — see the CSRF curation notes; kept as a genuine finding record.",
-    "slug": "csrf-avideo-chained",
-    "lab_url": "",
+    "type": "lab",
+    "status": "shipped",
+    "lab_url": "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/39-avideo-plugin-csrf",
+    "summary": "POST /admin/save.json.php menulis field POST arbitrer ke konfigurasi plugin tanpa pernah memanggil isGlobalTokenValid()/verifyToken() (WWBN/AVideo <= 26.0, PHP; pelapor aisafe.io) — request tempaan bermodal cookie sesi admin mengubah paypalReceiverEmail plugin PayPerView; diperparah cookie SameSite=None yang eksplisit dan mass-assignment tanpa allowlist; CVSS 8.1. Fix anjuran advisory: isGlobalTokenValid() di save.json.php:10. Lab: mock stdlib panel admin (tanpa MySQL); exploit contract STATUS/PLUGIN/PAYPAL_EMAIL, bukti lewat GET /admin/plugins; fix = token CSRF divalidasi tepat setelah cek admin → 403 fail-closed.",
+    "slug": "lab-39-avideo-plugin-csrf",
     "added": ""
   },
   {
