@@ -16,12 +16,19 @@
   </div>
 </header>
 <main class="wrap">
-<h1>2026</h1><p class="lede">8 records.</p><article class="card lab">
+<h1>2026</h1><p class="lede">9 records.</p><article class="card lab">
   <h3>CRLF-Powered Desync Attacks<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2026 — PortSwigger Research</div>
   <div class="topics"><span class="topic">CRLF Injection</span></div>
   <p>CRLF injection that splits a request at a proxy — desync leading to response queue poisoning.</p>
   <div class="links"><a href="https://portswigger.net/research/crlf-powered-desync-attacks" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/16-crlf-desync" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
+</article>
+<article class="card lab">
+  <h3>CVE-2026-22689: Mailpit — CSWSH tanpa validasi Origin<span class="badge lab">🧪 lab</span></h3>
+  <div class="meta">2026 — axllent/mailpit (vendor advisory)</div>
+  <div class="topics"><span class="topic">CSWSH</span></div>
+  <p>WebSocket upgrader Mailpit disetel CheckOrigin: return true (axllent/mailpit &lt; 1.28.2, Go/gorilla; CVE-2026-22689, CVSS 6.5) — halaman asing bisa membuka socket ke ws://localhost:8025/api/events dan menerima siaran event email (subjek, pengirim, cuplikan isi) secara real-time. Fix 1.28.2: hapus CheckOrigin (default gorilla: Origin harus cocok Host). Lab: server WebSocket asli stdlib (handshake 101 + text frame); exploit contract STATUS/EVENT_ID/EVENT_SUBJECT, bukti lewat GET /api/events; fix = tolak Origin yang host-nya != Host → 403.</p>
+  <div class="links"><a href="https://github.com/axllent/mailpit/security/advisories/GHSA-524m-q5m7-79mm" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/40-mailpit-cswsh" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 <article class="card lab">
   <h3>CVE-2026-34383: Admidio — penegakan CSRF kondisional pada input penyerang<span class="badge lab">🧪 lab</span></h3>
