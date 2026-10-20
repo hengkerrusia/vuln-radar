@@ -16,7 +16,7 @@
   </div>
 </header>
 <main class="wrap">
-<h1>2026</h1><p class="lede">9 records.</p><article class="card lab">
+<h1>2026</h1><p class="lede">10 records.</p><article class="card lab">
   <h3>CRLF-Powered Desync Attacks<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2026 — PortSwigger Research</div>
   <div class="topics"><span class="topic">CRLF Injection</span></div>
@@ -50,6 +50,13 @@
   <div class="topics"><span class="topic">IDOR</span></div>
   <p>PUT /admin/settings/users/edit/{id} with form-urlencoded password=... resets any non-admin user&#x27;s password — gate checked roles ((caller non-admin) &amp;&amp; (target non-admin)) but never ownership, CWE-269 + CWE-639. Affects Krayin CRM 2.2.x (tested commit ba25b7e7), CVSS 8.8. Lab: mock CRM (stdlib-only); attacker id 100 resets victim id 1&#x27;s password then logs in as victim → ATO; exploit contract STATUS/VICTIM_TOKEN, token proven via independent /me oracle; fix = owner-or-admin → 403, self-edit and admin-edit still work.</p>
   <div class="links"><a href="https://github.com/trexnegro/security-advisories/blob/HEAD/CVE-2026-38529/README.md" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/33-krayin-bola-password-reset" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
+</article>
+<article class="card lab">
+  <h3>CVE-2026-67448: Mailpit — bypass cek Origin WebSocket via path percent-encoded<span class="badge lab">🧪 lab</span></h3>
+  <div class="meta">2026 — axllent/mailpit (vendor advisory)</div>
+  <div class="topics"><span class="topic">CSWSH</span></div>
+  <p>Regresi CVE-2026-22689 di axllent/mailpit 1.29.0–1.30.5: perbaikan CSWSH diimplementasikan ulang sebagai middleware Origin di server.go yang gate-nya menguji URI mentah (strings.HasPrefix(r.RequestURI, \&quot;/api/\&quot;)), sedangkan http.ServeMux me-route path yang sudah ter-decode dan upgrader WebSocket tetap CheckOrigin: return true. Request ke /%61pi/events melewatkan satu-satunya cek Origin lalu ter-route ke handler /api/events — halaman asing kembali menerima siaran event email (subjek, pengirim, cuplikan isi) secara real-time. Fix 1.30.6: gate pada r.URL.Path (ter-decode) dan upgrader memvalidasi Origin sendiri secara fail-closed. Lab: diferensial 403 (path polos) vs 101 (path ter-encode); fix dua lapis ala upstream.</p>
+  <div class="links"><a href="https://github.com/axllent/mailpit/security/advisories/GHSA-8r62-w5wh-fc5m" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/41-mailpit-cswsh-bypass" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 <article class="card lab">
   <h3>form-data CRLF injection<span class="badge lab">🧪 lab</span></h3>
