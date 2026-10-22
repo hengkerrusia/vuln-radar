@@ -16,7 +16,7 @@
   </div>
 </header>
 <main class="wrap">
-<h1>2026</h1><p class="lede">10 records.</p><article class="card lab">
+<h1>2026</h1><p class="lede">11 records.</p><article class="card lab">
   <h3>CRLF-Powered Desync Attacks<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2026 — PortSwigger Research</div>
   <div class="topics"><span class="topic">CRLF Injection</span></div>
@@ -78,6 +78,13 @@
   <div class="topics"><span class="topic">CRLF Injection</span></div>
   <p>CRLF in a Basic-auth username passes through to the morgan logger — log forging via unsanitized log sink.</p>
   <div class="links"><a href="https://github.com/advisories/GHSA-4vj7-5mj6-jm8m" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/18-morgan-log-forging" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
+</article>
+<article class="card candidate">
+  <h3>php2shell — CVE-2026-109618 &amp; CVE-2026-109619: unauthenticated RCE in PHP core<span class="badge candidate">candidate</span></h3>
+  <div class="meta">2026 — Calif (LCFR) et al.</div>
+  <div class="topics"><span class="topic">RCE</span> <span class="topic">Memory Corruption</span></div>
+  <p>Dua kerentanan memory corruption di core PHP, bukan di aplikasi. CVE-2026-109618 (GHSA-w8hw-w9fx-j79w): fatal out-of-memory via longjmp di tengah inisialisasi request (parsing multipart/POST) meninggalkan bucket HashTable setengah terinisialisasi yang tetap dikonsumsi teardown saat request shutdown — RCE pre-auth, terkonfirmasi di mod_php sebelum kode aplikasi berjalan. CVE-2026-109619 (GHSA-6wmf-4rv5-p3rp): state global sisa satu request menunjuk memori request yang sudah dibebaskan (use-after-free) dan dikonsumsi request berikutnya pada worker yang sama; jalur terkonfirmasi termasuk session upload progress yang aktif secara default. Jalur kode rentan ada sejak PHP 5.4.0; semua SAPI web terdampak (mod_php, PHP-FPM, php-cgi, FrankenPHP, LiteSpeed), konfigurasi default, tanpa login; RCE terkonfirmasi terhadap WordPress, Drupal, Joomla, Magento dan lainnya. CVSS v4 9.2 (AC:H / AT:P). Fix resmi 8.5.12 / 8.4.27 / 8.3.36 / 8.2.35 plus backport source untuk 7.4–8.1; tidak ada mitigasi konfigurasi yang tuntas — update adalah satu-satunya perbaikan. Eksploitasi in-the-wild teramati sejak hari disclosure, 21 Oktober 2026. Berstatus candidate dan bukan lab: bug berada di interpreter C dan eksploitasinya bergantung pada layout heap serta timing antar-request, sehingga belum ada exploit publik terverifikasi yang deterministik untuk diverifikasi otomatis ala fixthecode.</p>
+  <div class="links"><a href="https://calif.io/php2shell/" target="_blank" rel="noopener">Read the original ↗</a></div>
 </article>
 <article class="card lab">
   <h3>WordPress file inclusion (CVE-2026-87902)<span class="badge lab">🧪 lab</span></h3>
