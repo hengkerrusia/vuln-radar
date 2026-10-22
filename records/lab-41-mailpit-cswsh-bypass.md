@@ -5,7 +5,7 @@ year: 2026
 url: "https://github.com/axllent/mailpit/security/advisories/GHSA-8r62-w5wh-fc5m"
 topics: ["CSWSH"]
 techniques: ["CSWSH", "origin check bypass", "percent-encoding"]
-related: ["lab-40-mailpit-cswsh: regresi dari fix Lab 40 — middleware Origin menguji URI mentah sedangkan router memakai path ter-decode"]
+related: ["lab-40-mailpit-cswsh: regresi dari fix Lab 40 — middleware Origin menguji URI mentah sedangkan router memakai path ter-decode", "lab-42-bokeh-cswsh-allowlist: lanjutan trilogi CSWSH — allowlist Origin yang aktif pun lolos via domain look-alike (prefix-match per label)"]
 type: "lab"
 status: "shipped"
 lab_url: "https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/41-mailpit-cswsh-bypass"

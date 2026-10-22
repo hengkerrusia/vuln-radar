@@ -302,7 +302,7 @@ SERIES = [
     ("Labs 31+ · Parameter pollution", [31]),
     ("Labs 34+ · BFLA", [34]),
     ("Labs 35+ · CSRF", [35, 36, 37, 38, 39]),
-    ("Labs 40+ · CSWSH", [40, 41]),
+    ("Labs 40+ · CSWSH", [40, 41, 42]),
 ]
 
 

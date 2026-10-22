@@ -16,12 +16,19 @@
   </div>
 </header>
 <main class="wrap">
-<h1>2026</h1><p class="lede">11 records.</p><article class="card lab">
+<h1>2026</h1><p class="lede">12 records.</p><article class="card lab">
   <h3>CRLF-Powered Desync Attacks<span class="badge lab">🧪 lab</span></h3>
   <div class="meta">2026 — PortSwigger Research</div>
   <div class="topics"><span class="topic">CRLF Injection</span></div>
   <p>CRLF injection that splits a request at a proxy — desync leading to response queue poisoning.</p>
   <div class="links"><a href="https://portswigger.net/research/crlf-powered-desync-attacks" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/16-crlf-desync" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
+</article>
+<article class="card lab">
+  <h3>CVE-2026-21883: Bokeh CSWSH allowlist prefix-match → look-alike domain bypass<span class="badge lab">🧪 lab</span></h3>
+  <div class="meta">2026 — Bokeh</div>
+  <div class="topics"><span class="topic">CSWSH</span></div>
+  <p>Bokeh &lt; 3.8.2 validates WebSocket Origin against an allowlist, but match_host() compares host vs pattern per dot-label with zip(): zip stops at the shortest, and the code only rejects when the pattern is LONGER than the host — so the pattern matches as a PREFIX. Look-alike host portal.corp.evil.example passes for allowlist entry portal.corp → Cross-Site WebSocket Hijacking despite an active allowlist. Fixed in 3.8.2 (commit cedd113b0e271b439dce768671685cf5f861812e) by requiring equal label counts; CWE-1385, CVSS 3.1 5.4. Lab: stdlib-only mock of the vulnerable matcher; exploit contract = 101 handshake from look-alike Origin + event leak via independent oracle; fix = exact label-count match (fail-closed), mirroring upstream. Third in the CSWSH trilogy: (40) no validation at all → (41) validation defeated by normalization mismatch → (42) validation defeated by matcher logic flaw.</p>
+  <div class="links"><a href="https://github.com/advisories/GHSA-793v-589g-574v" target="_blank" rel="noopener">Read the original ↗</a> · <a href="https://github.com/hengkerrusia/fixthecode/tree/main/labs/web/42-bokeh-cswsh-allowlist" target="_blank" rel="noopener">🧪 Try the lab ↗</a></div>
 </article>
 <article class="card lab">
   <h3>CVE-2026-22689: Mailpit — CSWSH tanpa validasi Origin<span class="badge lab">🧪 lab</span></h3>
